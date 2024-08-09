@@ -1,29 +1,22 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "../app/style.css";
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
 export default function Jumbotron() {
   return (
-    <div className="mt-10 h-[400px] bg-half flex items-center justify-center">
-      <div className="container max-w-7xl mx-auto">
+    <div className="h-[200px] md:h-[400px] bg-half md:bg-half2 flex items-center justify-center">
+      <div className="container max-w-full sm:max-w-7xl mx-auto px-4">
         <Swiper
-          spaceBetween={30}
+          spaceBetween={10}
           centeredSlides={true}
           autoplay={{
-            delay: 1,
+            delay: 2500,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -31,16 +24,16 @@ export default function Jumbotron() {
           }}
           navigation={true}
           modules={[Autoplay, Pagination, Navigation]}
-          className="rounded-3xl  w-[960px]"
+          className="rounded-3xl  w-full sd:max-w-3xl md:max-w-3xl"
         >
           <SwiperSlide>
-            <Image src="/TOP.png" alt="Top image" width={500} height={300} />
+            <Image src="/TOP.png" alt="Top image" width={960} height={400} className="w-full h-auto object-cover" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src="/TOP.jpg" alt="Top image" width={500} height={300} />
+            <Image src="/TOP.jpg" alt="Top image" width={960} height={400} className="w-full h-auto object-cover" />
           </SwiperSlide>
           <SwiperSlide>
-            <Image src="/TOP.png" alt="Top image" width={500} height={300} />
+            <Image src="/TOP.png" alt="Top image" width={960} height={400} className="w-full h-auto object-cover" />
           </SwiperSlide>
         </Swiper>
       </div>
