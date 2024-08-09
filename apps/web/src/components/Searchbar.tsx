@@ -24,7 +24,7 @@ const Searchbar = () => {
           </svg>
         </button>
         <input
-          className="input rounded-full w-[400px] px-8 py-3 border-2  border-blue1 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 "
+          className="input placeholder:text-md rounded-full w-4xl sd:max-w-3xl md:max-w-3xl px-8 py-3 border-2  border-blue1 focus:outline-none focus:border-blue-500 placeholder-gray-400 transition-all duration-300 "
           placeholder="Find Event/Artist/Group Name"
           //   required=""
           type="text"
