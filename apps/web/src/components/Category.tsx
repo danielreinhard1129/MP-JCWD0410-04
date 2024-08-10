@@ -3,66 +3,36 @@ import Link from "next/link";
 
 const Category = () => {
   return (
-    <div className="mt-10 ">
-      <div className="container flex flex-wrap max-w-7xl mx-auto">
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Music</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 to  p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Sports</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Theater</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Classical</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Art Event</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Movie</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Anime</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">KPOP</span>
-          </div>
-        </div>
-        <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 px-2 mb-4">
-          <div className="rounded-full bg-white border-2 border-blue1 p-4 flex items-center justify-start space-x-2 h-full">
-            <span className="text-2xl">🎵</span>
-            <span className="text-1xl font-medium">Live Stream</span>
-          </div>
-        </div>
+    <div className="mt-10">
+      <div className="container flex flex-wrap justify-center sm:justify-start md:justify-between gap-4 max-w-full md:max-w-7xl mx-auto px-4">
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Music
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Sports
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Theater
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Classical
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Art
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Anime
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Korean
+        </button>
+        <button className="w-full sm:w-48 md:w-36 h-12 hover:brightness-110 hover:animate-pulse font-bold py-3 px-6 rounded-full bg-gradient-to-r from-blue3 to-blue1 text-white">
+          Live Stream
+        </button>
       </div>
-      <div className="mt-4 max-w-7xl mx-auto text-right">
+      <div className="mt-4 max-w-full md:max-w-7xl mx-auto text-center md:text-right px-4">
         <Link href="/detailed-search" className="text-blue1 font-bold">
-          Click here for detailed ticket search &gt;
+          Click here to browse more
         </Link>
       </div>
     </div>

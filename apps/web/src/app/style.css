@@ -17,6 +17,10 @@
   }
   
   .bg-half {
-    background: linear-gradient(to top, #7DD8FF 60%, transparent 50%);
+    background: linear-gradient(to top, #21abff 60%, transparent 60%);
+  }
+
+  .bg-half2 {
+    background: linear-gradient(to top, #21abff 40%, transparent 40%);
   }
   
