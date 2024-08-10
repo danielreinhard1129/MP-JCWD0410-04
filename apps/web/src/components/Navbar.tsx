@@ -1,6 +1,13 @@
+'use client'
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
   return (
     <nav className="bg-white py-3 px-6 sticky top-0 w-full z-50">
       <div className="container max-w-7xl mx-auto flex items-center justify-between">
