@@ -1,5 +1,7 @@
+'use client'
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +10,11 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const pathname = usePathname();
+
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
   return (
     <nav className="bg-white shadow-sm py-3 px-6 sticky top-0 w-full z-50">
       <div className="container max-w-7xl mx-auto flex items-center justify-between">
