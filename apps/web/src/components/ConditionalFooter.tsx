@@ -6,7 +6,7 @@ import Footer from "./Footer";
 const ConditionalFooter = () => {
   const pathname = usePathname();
 
-  const hideFooterPaths = ["/login", "/register"];
+  const hideFooterPaths = ["/login", "/register", "/dashboard"];
 
   const showFooter = !hideFooterPaths.includes(pathname);
 

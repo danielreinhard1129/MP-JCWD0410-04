@@ -3,7 +3,7 @@ import React from 'react'
 
 const NavbarDashboard = () => {
   return (
-    <nav className="bg-white py-3 px-6 sticky top-0 w-full z-50 flex justify-between">
+    <nav className="bg-white py-3 px-6 sticky top-0 w-full h-12 z-50 flex justify-between">
       <div>TextDashboard</div>
       <div className='flex items-center justify-start space-x-2'>
         <span>
