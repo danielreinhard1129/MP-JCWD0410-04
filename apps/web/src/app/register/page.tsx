@@ -4,9 +4,8 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div className="container mx-auto max-w-100 h-screen bg-[url('/kpop1.jpeg')] bg-cover bg-center bg-no-repeat flex justify-center items-center">
+<div className="container mx-auto max-w-full min-h-screen sm:h-[80vh] md:h-[90vh] lg:h-screen bg-[url('/kpop1.jpeg')] bg-cover bg-center bg-no-repeat flex justify-center items-center">
   <div className="w-96 p-4 rounded-3xl shadow sm:p-8 bg-white text-black1">
-
 	<Link
           href="/"
           className="text-sm font-bold text-black1 hover:text-orange1"
