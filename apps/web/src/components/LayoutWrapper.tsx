@@ -8,7 +8,7 @@ const LayoutWrapper = ({children}: PropsWithChildren) => {
   return (
     <div className='flex'>
       <div className='w-80'>
-        <div className='bg-blue3'>
+        <div className='bg-blue3 h-12'>
           <Link
             href="/"
             className="text-sm font-bold text-black1 hover:text-orange1"
@@ -16,7 +16,7 @@ const LayoutWrapper = ({children}: PropsWithChildren) => {
             <img
               src="/tixLogo300.png"
               alt="Description"
-              className="w-40 object-cover mx-auto"
+              className="w-40 object-cover m-auto"
             />
           </Link>
         </div>
