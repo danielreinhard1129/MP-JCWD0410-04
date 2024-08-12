@@ -8,8 +8,9 @@ const ConditionalNavbar = () => {
 
   const hideNavbarPaths = ["/login", "/register", "/dashboard"];
 
-  const showNavbar = !hideNavbarPaths.includes(pathname);
+  // const showNavbar = !hideNavbarPaths.startwith(pathname);
 
+  const showNavbar = !hideNavbarPaths.some(route => pathname.startsWith(route))
   return showNavbar ? <Navbar /> : null;
 };
 
