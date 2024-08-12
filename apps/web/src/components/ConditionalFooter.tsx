@@ -8,7 +8,7 @@ const ConditionalFooter = () => {
 
   const hideFooterPaths = ["/login", "/register", "/dashboard"];
 
-  const showFooter = !hideFooterPaths.includes(pathname);
+  const showFooter = !hideFooterPaths.some(route => pathname.startsWith(route));
 
   return showFooter ? <Footer/> : null;
 };
