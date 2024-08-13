@@ -96,7 +96,7 @@ const DragCloseDrawer: React.FC<DragCloseDrawerProps> = ({
   );
 };
 
-export default function Detail() {
+export default function DetailPage() {
   const [open, setOpen] = useState(false);
   return (
     <div className="flex-col justify-between min-h-screen mx-auto">
