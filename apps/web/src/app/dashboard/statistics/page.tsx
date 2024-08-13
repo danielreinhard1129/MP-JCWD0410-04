@@ -1,9 +1,10 @@
 import DashboardEventPage from '@/features/events'
+import React from 'react'
 
-const Events = () => {
+const Statistics = () => {
   return (
     <DashboardEventPage />
   )
 }
 
-export default Events
+export default Statistics
