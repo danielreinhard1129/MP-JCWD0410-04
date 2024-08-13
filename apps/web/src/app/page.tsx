@@ -1,4 +1,5 @@
 import Category from "@/components/Category";
+import DummyCard from "@/components/DummyCard";
 import Jumbotron from "@/components/Jumbotron";
 import PopularEventsCard from "@/components/PopularEventsCard";
 import PopularEventsTitle from "@/components/PopularEventsTitle";
@@ -16,10 +17,10 @@ const page = () => {
       <PopularEventsTitle/>
       <div className="mb-10">
         <div className="max-w-7xl mx-auto border-t-2 border-blue1 p-4 sm:p-6 lg:p-10 flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-          <PopularEventsCard/>
-          <PopularEventsCard/>
-          <PopularEventsCard/>
-          <PopularEventsCard/>
+        <DummyCard/>
+        <DummyCard/>
+        <DummyCard/>
+        <DummyCard/>
         </div>
       </div>
       <PromoBanner/>
