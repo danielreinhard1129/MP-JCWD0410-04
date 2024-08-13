@@ -1,8 +1,8 @@
-import Detail from '@/features/detail'
+import React from 'react'
 
 const page = () => {
   return (
-    <Detail/>
+    <div>page</div>
   )
 }
 
