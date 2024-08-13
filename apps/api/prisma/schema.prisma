@@ -19,3 +19,233 @@ model Sample {
 
   @@map("samples") // if you want to use snake_case format
 }
+
+model User {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  email        String        @unique
+  password     String
+  pfp          String
+  role         Role
+  isDeleted    Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  events       Event[]
+  vouchers     Voucher[]
+  checkouts    Checkout[]
+  userVouchers UserVoucher[]
+  userRewards  UserReward[]
+
+  @@map("users")
+}
+
+model Event {
+  id              Int             @id @default(autoincrement())
+  title           String
+  desc            String
+  img             String
+  price           Int
+  quota           Int
+  available_seat  Int
+  date            DateTime
+  isDeleted       Boolean         @default(false)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  EventCategories EventCategory[]
+
+  user      User       @relation(fields: [userId], references: [id])
+  venue     Venue      @relation(fields: [venueId], references: [id])
+  userId    Int
+  venueId   Int
+  vouchers  Voucher[]
+  checkouts Checkout[]
+
+  @@map("events")
+}
+
+model Category {
+  id              Int             @id @default(autoincrement())
+  category        String
+  isDeleted       Boolean         @default(false)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  eventCategories EventCategory[]
+
+  @@map("categories")
+}
+
+model EventCategory {
+  id         Int      @id @default(autoincrement())
+  isDeleted  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  eventId    Int
+  categoryId Int
+
+  event    Event    @relation(fields: [eventId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@map("eventcategories")
+}
+
+model Venue {
+  id        Int      @id @default(autoincrement())
+  address   String   @unique
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cityId    Int
+
+  city   City    @relation(fields: [cityId], references: [id])
+  events Event[]
+
+  @@map("venues")
+}
+
+model City {
+  id        Int      @id @default(autoincrement())
+  name      String
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  venues    Venue[]
+
+  @@map("cities")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  text      String
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+model Point {
+  id        Int      @id @default(autoincrement())
+  total     Int      @default(0)
+  expDate   DateTime
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("points")
+}
+
+model Reward {
+  id          Int          @id @default(autoincrement())
+  code        String       @unique
+  expDate     DateTime
+  isDeleted   Boolean      @default(false)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userRewards UserReward[]
+
+  @@map("rewards")
+}
+
+model Checkout {
+  id          Int      @id @default(autoincrement())
+  total       Int
+  ticketQty   Int
+  pointUsed   Int?
+  voucherUsed Int?
+  rewardUsed  Int?
+  isDeleted   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id])
+  event    Event     @relation(fields: [eventId], references: [id])
+  userId   Int
+  eventId  Int
+  payments Payment[]
+
+  @@map("checkouts")
+}
+
+model Payment {
+  id        Int            @id @default(autoincrement())
+  status    Payment_Status
+  isDeleted Boolean        @default(false)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  checkout       Checkout     @relation(fields: [checkoutId], references: [id])
+  paymentproof   PaymentProof @relation(fields: [paymentProofId], references: [id])
+  checkoutId     Int
+  paymentProofId Int
+
+  @@map("payments")
+}
+
+model Voucher {
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
+  expDate   DateTime
+  quota     Int
+  claimed   Int
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id])
+  event        Event         @relation(fields: [eventId], references: [id])
+  userId       Int
+  eventId      Int
+  userVouchers UserVoucher[]
+
+  @@map("vouchers")
+}
+
+model PaymentProof {
+  id        Int       @id @default(autoincrement())
+  imgUrl    String    @unique
+  isDeleted Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payments  Payment[]
+
+  @@map("paymentproofs")
+}
+
+model UserReward {
+  id        Int      @id @default(autoincrement())
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User   @relation(fields: [userId], references: [id])
+  reward   Reward @relation(fields: [rewardId], references: [id])
+  userId   Int
+  rewardId Int
+
+  @@map("userrewards")
+}
+
+model UserVoucher {
+  id        Int      @id @default(autoincrement())
+  isDeleted Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User    @relation(fields: [userId], references: [id])
+  voucher   Voucher @relation(fields: [voucherId], references: [id])
+  userId    Int
+  voucherId Int
+
+  @@map("uservouchers")
+}
+
+enum Role {
+  EO
+  CUSTOMER
+}
+
+enum Payment_Status {
+  Accepted
+  Declined
+  Pending
+}
