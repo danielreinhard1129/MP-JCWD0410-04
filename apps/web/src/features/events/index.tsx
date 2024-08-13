@@ -1,11 +1,21 @@
-import React from 'react'
+'use client'
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const DashboardEventPage = () => {
+  const pathname = usePathname();
+
   return (
-    <div className='bg-blue2 mt-4 rounded-2xl p-4 flex flex-wrap gap-4'>
-      <div>
-        <h1>Active Events</h1>
-        <h1>Past Events</h1>
+    <div className='bg-blue2 mt-4 rounded-2xl p-4'>
+      <div>{pathname}</div>
+      <div className='flex justify-between'>
+        <div className='flex gap-2'>
+          {pathname === "/dashboard/active-events" ? <Link href={"/dashboard/active-events"} className='bg-blue3 p-[6px] rounded-xl text-blue2'>Active Events</Link> : <Link href={"/dashboard/active-events"} className='p-[6px] rounded-xl'>Active Events</Link>}    
+          {pathname === "/dashboard/past-events" ? <Link href={"/dashboard/past-events"} className='bg-blue3 p-[6px] rounded-xl text-blue2'>Past Events</Link> : <Link href={"/dashboard/past-events"} className='p-[6px] rounded-xl'>Past Events</Link>}
+          {pathname === "/dashboard/statistics" ? <Link href={"/dashboard/statistics"} className='bg-blue3 p-[6px] rounded-xl text-blue2'>Statistics</Link> : <Link href={"/dashboard/statistics"} className='p-[6px] rounded-xl'>Statistics</Link>}
+        </div>
+        <Link href={"/dashboard/create-event"} className='p-[6px] rounded-xl'>Create event</Link>
       </div>
     </div>
   )

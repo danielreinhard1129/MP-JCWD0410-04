@@ -9,7 +9,7 @@ const DashboardCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "h-40 w-72 rounded-lg border-[2px] border-grey2 p-1",
+      "h-40 w-72 rounded-lg border-[2px] border-grey2 p-1 bg-blue2",
       className
     )}
     {...props}
