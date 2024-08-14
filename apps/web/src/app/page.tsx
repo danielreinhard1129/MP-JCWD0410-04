@@ -1,32 +1,19 @@
-import Category from "@/components/Category";
-import DummyCard from "@/components/DummyCard";
+import { CategoryCarousel } from "@/components/CategoryCarousel";
+import Jumbotron from "@/components/Jumbotron";
 import PopularEventsTitle from "@/components/PopularEventsTitle";
 import PromoBanner from "@/components/PromoBanner";
 import PromoEventsTitle from "@/components/PromoEventsTitle";
+import { TopPicksSection } from "@/components/TopPicksSection";
 
 const page = () => {
   return (
-    <div className="mt-10 min-h-screen max-w-full bg-white px-0 md:px-0 lg:px-0">
-      <Category />
+    <div className="min-h-screen max-w-full bg-white px-0 md:px-0 lg:px-0">
+      <Jumbotron />
+      <CategoryCarousel />
       <PopularEventsTitle />
-      <div className="mb-10">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 border-t-2 border-blue1 p-4 sm:gap-6 sm:p-6 lg:p-10">
-          <DummyCard />
-          <DummyCard />
-          <DummyCard />
-          <DummyCard />
-        </div>
-      </div>
+      <TopPicksSection />
       <PromoBanner />
       <PromoEventsTitle />
-      <div className="mb-10">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-4 border-t-2 border-blue1 p-4 sm:gap-6 sm:p-6 lg:p-10">
-          <DummyCard />
-          <DummyCard />
-          <DummyCard />
-          <DummyCard />
-        </div>
-      </div>
     </div>
   );
 };

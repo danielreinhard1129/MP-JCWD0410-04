@@ -9,7 +9,7 @@ const DashboardCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "h-40 w-72 rounded-lg border-[2px] border-grey2 p-1 bg-blue2",
+      "h-40 w-72 rounded-lg shadow-md   p-1 bg-white",
       className
     )}
     {...props}
@@ -23,7 +23,7 @@ const DashboardCardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex h-12 items-center border-b-2 pl-1", className)}
+    className={cn("flex h-12 items-center border-b-2 border-gray-300 pl-1", className)}
     {...props}
   />
 ));

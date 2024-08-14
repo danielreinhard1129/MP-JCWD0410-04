@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="py-6 text-sm text-center dark:text-gray-900">
+      <div className="max-w-7xl mx-auto py-6 text-sm text-center dark:text-gray-900">
         © 2024 PT. MAKAN SIANG GRATIS BERSAMA. All rights reserved.
       </div>
     </footer>

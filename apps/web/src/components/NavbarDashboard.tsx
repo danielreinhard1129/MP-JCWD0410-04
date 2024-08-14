@@ -3,7 +3,7 @@ import React from 'react'
 
 const NavbarDashboard = () => {
   return (
-    <nav className="bg-blue2 p-3 top-0 w-full h-12 z-50 flex justify-between rounded-2xl text-center">
+    <nav className="bg-white shadow-sm p-3 top-0 w-full h-12 z-50 flex justify-between rounded-2xl text-center">
       <div>TextDashboard</div>
       <div className='flex items-center justify-start space-x-2'>
         <span>
