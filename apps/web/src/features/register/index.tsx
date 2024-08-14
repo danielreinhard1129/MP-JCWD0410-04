@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Register = () => {
   return (
-    <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-[url('/kpop1.jpeg')] bg-cover bg-center bg-no-repeat sm:h-[80vh] md:h-[90vh] lg:h-screen">
+    <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-grey1">
       <div className="w-96 rounded-3xl bg-white p-4 text-black1 shadow sm:p-8">
         <Link
           href="/"

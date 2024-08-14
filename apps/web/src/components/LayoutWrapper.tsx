@@ -6,8 +6,8 @@ import { TbHome, TbCalendarStar } from "react-icons/tb";
 
 const LayoutWrapper = ({ children }: PropsWithChildren) => {
   return (
-    <div className="flex bg-gray-300">
-      <div className="w-80 sticky bg-blue2">
+    <div className="flex bg-[#edf5ff]">
+      <div className="w-80 sticky bg-white">
         <div className="h-12">
           <Link href="/">
             <img
@@ -18,10 +18,10 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
           </Link>
         </div>
         <hr className="mx-2"></hr>
-        <div className="h-screen">
+        <div className="p-4 bg-white shadow-sm h-screen">
           <p className="p-2 pl-4 text-xs font-bold text-blue1">Dashboard</p>
           <Link href="/dashboard">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 rounded-full hover:text-blue2">
               <span>
                 <TbHome />
               </span>
@@ -29,7 +29,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
             </div>
           </Link>
           <Link href="/dashboard/active-events" className="hover:text-black1">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
                 <TbCalendarStar />
               </span>
@@ -37,7 +37,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
             </div>
           </Link>
           <Link href="/dashboard/transactions" className="hover:text-black1">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
                 <TbCalendarStar />
               </span>
@@ -47,7 +47,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
           <hr className="mx-2"></hr>
           <p className="p-2 pl-4 text-xs font-bold text-blue1">Account</p>
           <Link href="/dashboard/profile" className="hover:text-black1">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
                 <TbHome />
               </span>
@@ -55,7 +55,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
             </div>
           </Link>
           <Link href="/dashboard/inbox" className="hover:text-black1">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
                 <TbHome />
               </span>
@@ -63,7 +63,7 @@ const LayoutWrapper = ({ children }: PropsWithChildren) => {
             </div>
           </Link>
           <Link href="/dashboard/settings" className="hover:text-black1">
-            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 hover:text-blue2">
+            <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
                 <TbHome />
               </span>

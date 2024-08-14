@@ -4,7 +4,7 @@ import {DashboardCard, DashboardCardContent} from "@/components/ui/dashboardCard
 const DashboardPage = () => {
   
   return (
-    <div className='bg-blue2 mt-4 rounded-2xl'>
+    <div className='bg-white shadow-sm mt-4 rounded-2xl'>
       <h1 className="p-5 text-xl">
         Dashboard
       </h1>
