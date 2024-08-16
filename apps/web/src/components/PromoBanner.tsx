@@ -8,18 +8,17 @@ const PromoBanner = () => {
           <img src="/illust/1.svg" />
           <div className="flex flex-col gap-4 text-center md:text-left">
             <h1 className="text-2xl font-bold md:text-3xl">
-              Looking for something?
+              Looking for More Events?
             </h1>
             <h2 className="text-xl font-semibold text-gray-400 md:text-xl">
-              Log in with your Sympla account and see personalized
-              recommendations
+            Don’t miss out on the action! Click the search button below to explore all the exciting events we have lined up just for you.
             </h2>
           </div>
           <Link
             href="/login"
             className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"
           >
-            Login
+            Explore
           </Link>
         </div>
       </div>
