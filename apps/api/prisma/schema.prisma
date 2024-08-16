@@ -25,8 +25,8 @@ model User {
   username     String        @unique
   email        String        @unique
   password     String
-  pfp          String
-  role         Role
+  pfp          String?
+  role         Role @default(CUSTOMER)
   provider     Provider
   isDeleted    Boolean       @default(false)
   createdAt    DateTime      @default(now())
@@ -43,7 +43,7 @@ model User {
 model Event {
   id             Int      @id @default(autoincrement())
   title          String
-  desc           String
+  desc           String @db.LongText
   img            String
   price          Int
   quota          Int
