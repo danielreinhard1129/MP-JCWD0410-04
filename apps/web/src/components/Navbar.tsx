@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import Searchbar from "./Searchbar";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const session = useSession();
+  //session.data?.user.id
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
