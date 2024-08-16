@@ -60,7 +60,7 @@ export default class App {
     });
 
     this.app.use('/api/samples', sampleRouter.getRouter());
-    this.app.use('/', authRouter.getRouter());
+    this.app.use('/api/auth', authRouter.getRouter());
   }
 
   public start(): void {

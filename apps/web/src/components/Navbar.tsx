@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import Searchbar from "./Searchbar";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import Jumbotron from "./Jumbotron";
 
 const Navbar = () => {
   const session = useSession();
@@ -15,7 +16,7 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-10 w-full bg-white px-6 py-3 shadow-sm">
-      <div className="container mx-auto flex gap-4 max-w-7xl items-center justify-between md:justify-evenly lg:justify-around">
+      <div className="container mx-auto flex max-w-7xl items-center justify-between gap-4 md:justify-evenly lg:justify-around">
         <Link
           href="/"
           className="hover:text-orange1 text-sm font-bold text-black1"
@@ -45,18 +46,22 @@ const Navbar = () => {
                 My Tickets
               </Link>
             </div>
-            <Link
-              href="/login"
-              className="rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              className="hover:text-orange1 text-sm font-bold text-black1 hover:text-blue1"
-            >
-              Register
-            </Link>
+            {session.data?.user ? null : <Jumbotron />}
+            <div className="">
+              <Link
+                href="/login"
+                className="rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
+              >
+                Login
+              </Link>
+              <Link
+                href="/register"
+                className="hover:text-orange1 text-sm font-bold text-black1 hover:text-blue1"
+              >
+                Register
+              </Link>
+              <button onClick={() => signOut()}>logout</button>
+            </div>
           </div>
         </div>
 

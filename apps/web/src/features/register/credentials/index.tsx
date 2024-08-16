@@ -26,10 +26,14 @@ const RegisterCredentialsPage = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values, { resetForm }) => {
+      console.log(values);
+      
       await register(values);
       resetForm();
     },
   });
+
+  console.log(formik.errors);
 
   return (
     // <main className="flex justify-center pt-20">
@@ -65,22 +69,22 @@ const RegisterCredentialsPage = () => {
     <main>
       <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-grey1">
         <div className="w-96 rounded-3xl bg-white p-4 text-black1 shadow sm:p-8">
-        <Link
-          href="/"
-          className="hover:text-orange1 text-sm font-bold text-black1"
-        >
-          <img src="/tixLogo300.png" className="mx-auto w-40" />
-        </Link>
-        <p className="my-4 text-center text-sm dark:text-gray-600">
-          Already have an account?
           <Link
-            href="/login"
-            rel="noopener noreferrer"
-            className="hover:underline focus:underline"
+            href="/"
+            className="hover:text-orange1 text-sm font-bold text-black1"
           >
-          Sign in here
+            <img src="/tixLogo300.png" className="mx-auto w-40" />
           </Link>
-        </p>
+          <p className="my-4 text-center text-sm dark:text-gray-600">
+            Already have an account?
+            <Link
+              href="/login"
+              rel="noopener noreferrer"
+              className="hover:underline focus:underline"
+            >
+              Sign in here
+            </Link>
+          </p>
           <form className="space-y-8" onSubmit={formik.handleSubmit}>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -90,13 +94,16 @@ const RegisterCredentialsPage = () => {
                 <input
                   type="email"
                   name="email"
+                  id="email"
                   value={formik.values.email}
                   placeholder="leroy@jenkins.com"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                 />
-                {!!formik.touched.email && !!formik.errors.email ? (<p className="text-xs text-red-500">{formik.errors.email}</p>) : null}
+                {!!formik.touched.email && !!formik.errors.email ? (
+                  <p className="text-xs text-red-500">{formik.errors.email}</p>
+                ) : null}
               </div>
               <div className="space-y-2">
                 <label htmlFor="username" className="block text-sm">
@@ -105,13 +112,18 @@ const RegisterCredentialsPage = () => {
                 <input
                   type="text"
                   name="username"
+                  id="username"
                   value={formik.values.username}
                   placeholder="LeroyJenkins"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                 />
-                {!!formik.touched.username && !!formik.errors.username ? (<p className="text-xs text-red-500">{formik.errors.username}</p>) : null}
+                {!!formik.touched.username && !!formik.errors.username ? (
+                  <p className="text-xs text-red-500">
+                    {formik.errors.username}
+                  </p>
+                ) : null}
               </div>
               <div className="space-y-2">
                 <label htmlFor="password" className="block text-sm">
@@ -120,19 +132,23 @@ const RegisterCredentialsPage = () => {
                 <input
                   type="password"
                   name="password"
+                  id="password"
                   value={formik.values.password}
                   placeholder="******"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
                 />
-                {!!formik.touched.password && !!formik.errors.password ? (<p className="text-xs text-red-500">{formik.errors.password}</p>) : null}
+                {!!formik.touched.password && !!formik.errors.password ? (
+                  <p className="text-xs text-red-500">
+                    {formik.errors.password}
+                  </p>
+                ) : null}
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               className="w-full rounded-full bg-blue1 px-8 py-3 font-semibold text-white hover:bg-blue3"
-              disabled={isLoading}
             >
               Register
             </button>

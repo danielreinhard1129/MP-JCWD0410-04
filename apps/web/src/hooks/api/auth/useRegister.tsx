@@ -51,14 +51,14 @@ const useRegister = () => {
 
   return useMutation({
     mutationFn: async (payload: RegisterArgs) => {
-      const { data } = await axiosInstance.post("/register/credentials", payload);
+      const { data } = await axiosInstance.post("/register/credentials", payload);      
       return data;
     },
-    onSuccess: () => {
+    onSuccess: () => {      
       toast.success("Register success");
       router.push("/login");
     },
-    onError: (error: AxiosError<any>) => {
+    onError: (error: AxiosError<any>) => {      
       toast.error(error.response?.data);
     },
   });

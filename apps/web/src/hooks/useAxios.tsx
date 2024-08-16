@@ -42,7 +42,7 @@ const useAxios = () => {
       axiosInstance.interceptors.request.eject(requestIntercept);
       axiosInstance.interceptors.response.eject(responseIntercept);
     };
-  }, [session.data?.user.token]);
+  }, [session]);
 
   return { axiosInstance };
 };

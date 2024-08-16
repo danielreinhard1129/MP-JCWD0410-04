@@ -52,7 +52,7 @@ const useLogin = () => {
 
   return useMutation({
     mutationFn: async (payload: LoginPayload) => {
-      const { data } = await axiosInstance.post("/login", payload);
+      const { data } = await axiosInstance.post("/api/auth/login", payload);
       return data;
     },
     onSuccess: async (data) => {
@@ -61,6 +61,9 @@ const useLogin = () => {
       router.replace("/");
     },
     onError: (error: AxiosError<any>) => {
+
+      console.log();
+      
       toast.error(error.response?.data);
     },
   });
