@@ -130,9 +130,8 @@ const LoginPage = () => {
             </div>
           </div>
           <button
-            type="button"
+            type="submit"
             className="w-full rounded-full bg-blue1 px-8 py-3 font-semibold text-white hover:bg-blue3"
-            disabled={isLoading}
           >
             Sign in
           </button>

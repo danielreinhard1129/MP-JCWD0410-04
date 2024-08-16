@@ -1,6 +1,6 @@
-import React from 'react'
-import Chart from 'chart.js/auto'
-import { Bar } from 'react-chartjs-2';
+import React from "react";
+import Chart, { scales } from "chart.js/auto";
+import { Bar } from "react-chartjs-2";
 
 const StatisticPage = () => {
   const data = {
@@ -27,8 +27,8 @@ const StatisticPage = () => {
         data: [0.07, 0.3, 0.15, 0.2, 0.5, 0.3, 0.8, 0.2, 0.4],
         backgroundColor: "rgba(1, 98, 255, 1)",
         barThickness: 10,
-      }
-    ]
+      },
+    ],
   };
 
   const options = {
@@ -41,10 +41,31 @@ const StatisticPage = () => {
           usePointStyle: true,
           pointStyle: "circle",
         },
-        title: "",
-      }
-    }
-  }
+        title: {
+          text: "Sales Report",
+          display: true,
+          color: "#000",
+          font: {
+            size: 18,
+          },
+        },
+      },
+    },
+    scales: {
+      xAxis: {
+        display: false,
+      },
+      yAxis: {
+        max: 1,
+      },
+    },
+    elements: {
+      bar: {
+        barPercentage: 0.3,
+        categoryPercentage: 1,
+      },
+    },
+  };
 
   // new Chart(
   //   document.getElementById('acquisitions'),
@@ -66,7 +87,7 @@ const StatisticPage = () => {
       StatisticPage
       <Bar data={data} height={300} />
     </div>
-  )
-}
+  );
+};
 
-export default StatisticPage
+export default StatisticPage;

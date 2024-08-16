@@ -14,7 +14,7 @@ export class AuthRouter {
 
   private initializeRoutes(): void {
     this.router.post('/login', this.authController.login);
-    this.router.post('register/credentials', this.authController.register)
+    this.router.post('/register/credentials', this.authController.register);
     // this.router.patch(
     //   '/reset-password',
     //   verifyToken,
