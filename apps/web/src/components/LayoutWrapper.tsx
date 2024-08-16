@@ -3,8 +3,17 @@ import Navbar from "./Navbar";
 import NavbarDashboard from "./NavbarDashboard";
 import Link from "next/link";
 import { TbHome, TbCalendarStar } from "react-icons/tb";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-const LayoutWrapper = ({ children }: PropsWithChildren) => {
+const LayoutWrapper = async ({ children }: PropsWithChildren) => {
+
+  // const session = await auth();
+
+  // if(!session) {
+  //   return redirect("/login");
+  // }
+
   return (
     <div className="flex bg-[#edf5ff]">
       <div className="w-80 sticky bg-white">

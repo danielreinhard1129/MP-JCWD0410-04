@@ -27,6 +27,7 @@ model User {
   password     String
   pfp          String
   role         Role
+  provider     Provider
   isDeleted    Boolean       @default(false)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
@@ -40,25 +41,25 @@ model User {
 }
 
 model Event {
-  id              Int             @id @default(autoincrement())
-  title           String
-  desc            String
-  img             String
-  price           Int
-  quota           Int
-  available_seat  Int
-  date            DateTime
-  isDeleted       Boolean         @default(false)
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  EventCategories EventCategory[]
+  id             Int      @id @default(autoincrement())
+  title          String
+  desc           String
+  img            String
+  price          Int
+  quota          Int
+  available_seat Int
+  date           DateTime
+  venueId        Int
+  userId         Int
+  isDeleted      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  user      User       @relation(fields: [userId], references: [id])
-  venue     Venue      @relation(fields: [venueId], references: [id])
-  userId    Int
-  venueId   Int
-  vouchers  Voucher[]
-  checkouts Checkout[]
+  user            User            @relation(fields: [userId], references: [id])
+  venue           Venue           @relation(fields: [venueId], references: [id])
+  vouchers        Voucher[]
+  checkouts       Checkout[]
+  EventCategories EventCategory[]
 
   @@map("events")
 }
@@ -248,4 +249,9 @@ enum Payment_Status {
   Accepted
   Declined
   Pending
+}
+
+enum Provider {
+  CREDENTIALS
+  GOOGLE
 }
