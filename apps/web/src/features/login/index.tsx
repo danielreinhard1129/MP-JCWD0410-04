@@ -1,7 +1,23 @@
-import React from "react";
+'use client'
+import useLogin from "@/hooks/api/auth/useLogin";
+import { useFormik } from "formik";
+import { LoginSchema } from "./schemas/LoginSchema";
 import Link from "next/link";
 
-const Login = () => {
+const LoginPage = () => {
+  const {mutateAsync, isPending: isLoading} = useLogin();
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: LoginSchema,
+    onSubmit: async(values, {resetForm}) => {
+      await mutateAsync(values);
+      resetForm();
+    },
+  });
   return (
     <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-grey1">
       <div className="w-96 rounded-3xl bg-white p-4 text-black1 shadow sm:p-8">
@@ -71,7 +87,7 @@ const Login = () => {
           <p className="px-3 dark:text-gray-600">OR</p>
           <hr className="w-full dark:text-gray-600" />
         </div>
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={formik.handleSubmit}>
           <div className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
@@ -80,10 +96,13 @@ const Login = () => {
               <input
                 type="email"
                 name="email"
-                id="email"
+                value={formik.values.email}
                 placeholder="leroy@jenkins.com"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
               />
+              {!!formik.touched.email && !!formik.errors.email ? (<p className="text-xs text-red-500">{formik.errors.email}</p>) : null}
             </div>
             <div className="space-y-2">
               <div className="flex justify-between">
@@ -101,14 +120,17 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                id="password"
-                placeholder="*****"
+                value={formik.values.password}
+                placeholder="******"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
               />
+              {!!formik.touched.password && !!formik.errors.password ? (<p className="text-xs text-red-500">{formik.errors.password}</p>) : null}
             </div>
           </div>
           <button
-            type="button"
+            type="submit"
             className="w-full rounded-full bg-blue1 px-8 py-3 font-semibold text-white hover:bg-blue3"
           >
             Sign in
@@ -119,4 +141,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

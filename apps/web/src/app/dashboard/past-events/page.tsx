@@ -1,4 +1,4 @@
-import DashboardEventPage from '@/features/events'
+import DashboardEventPage from '@/features/event'
 import React from 'react'
 
 const PastEvents = () => {
