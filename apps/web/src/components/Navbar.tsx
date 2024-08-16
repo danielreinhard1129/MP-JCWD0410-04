@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { useState } from "react";
 import Searchbar from "./Searchbar";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const session = useSession();
+  //session.data?.user.id
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -11,8 +14,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white px-6 py-3 shadow-sm">
-      <div className="container mx-auto flex max-w-7xl items-center justify-around">
+    <nav className="sticky top-0 z-10 w-full bg-white px-6 py-3 shadow-sm">
+      <div className="container mx-auto flex gap-4 max-w-7xl items-center justify-between md:justify-evenly lg:justify-around">
         <Link
           href="/"
           className="hover:text-orange1 text-sm font-bold text-black1"
@@ -20,40 +23,48 @@ const Navbar = () => {
           <img
             src="/tixLogo300.png"
             alt="TixStation Logo"
-            className="w-40 object-cover"
+            className="w-28 object-cover md:w-40"
           />
         </Link>
-        <div className="hidden items-center space-x-6 md:flex">
-          <Searchbar />
-          <Link
-            href="/create"
-            className="text-sm font-bold text-black1 hover:text-blue1"
-          >
-            Create Event
-          </Link>
-          <Link
-            href="/mytickets"
-            className="text-sm font-bold text-black1 hover:text-blue1"
-          >
-            My Tickets
-          </Link>
-          <Link
-            href="/login"
-            className="rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="hover:text-orange1 text-sm font-bold text-black1 hover:text-blue1"
-          >
-            Register
-          </Link>
+
+        {/* Desktop Menu */}
+        <div className="hidden items-center md:flex">
+          <div className="flex items-center space-x-6">
+            <Searchbar />
+            <div className="flex space-x-4">
+              <Link
+                href="/create"
+                className="text-sm font-bold text-black1 hover:text-blue1"
+              >
+                Create Event
+              </Link>
+              <Link
+                href="/mytickets"
+                className="text-sm font-bold text-black1 hover:text-blue1"
+              >
+                My Tickets
+              </Link>
+            </div>
+            <Link
+              href="/login"
+              className="rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
+            >
+              Login
+            </Link>
+            <Link
+              href="/register"
+              className="hover:text-orange1 text-sm font-bold text-black1 hover:text-blue1"
+            >
+              Register
+            </Link>
+          </div>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
           className="text-black1 focus:outline-none md:hidden"
+          aria-label="Toggle menu"
         >
           <svg
             className="h-6 w-6"
@@ -74,35 +85,32 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="mt-2 bg-white shadow-md md:hidden">
-          <div className="space-y-1 px-6 pb-4 pt-2">
+        <div className="md:hidden">
+          <div className="flex flex-col items-center space-y-3 px-6 pb-4 pt-2">
+            <div className="py-2">
+              <Searchbar />
+            </div>
             <Link
-              href="/events"
-              className="hover:text-orange1 block text-sm font-bold text-black1 hover:text-blue1"
+              href="/create"
+              className="block text-sm font-bold text-black1 hover:text-blue1"
             >
-              Events
+              Create Event
             </Link>
             <Link
-              href="/help"
-              className="hover:text-orange1 block text-sm font-bold text-black1 hover:text-blue1"
-            >
-              Help Center
-            </Link>
-            <Link
-              href="#"
-              className="hover:text-orange1 block text-sm font-bold text-black1 hover:text-blue1"
+              href="/mytickets"
+              className="block text-sm font-bold text-black1 hover:text-blue1"
             >
               My Tickets
             </Link>
             <Link
               href="/login"
-              className="block rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
+              className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"
             >
               Login
             </Link>
             <Link
               href="/register"
-              className="hover:text-orange1 block text-sm font-bold text-black1 hover:text-blue1"
+              className="block text-sm font-bold text-black1 hover:text-blue1"
             >
               Register
             </Link>

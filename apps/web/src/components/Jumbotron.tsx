@@ -1,26 +1,53 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+"use client";
 
-// Import Swiper styles
-import "swiper/css";
+import React, { useState, useEffect } from "react";
 
-import "./styles.css";
+const images = [
+  { src: "/west1.jpg", alt: "Ticket information" },
+  { src: "/sports2.jpg", alt: "Ticket information" },
+  { src: "/west1.png", alt: "Ticket information" },
+  { src: "/music1.jpg", alt: "Ticket information" },
+];
 
-export default function App() {
+const Jumbotron = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <>
-      <Swiper className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-    </>
+    <div className="relative h-64 md:h-80 lg:h-96 w-full overflow-hidden">
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute left-0 top-0 h-full w-full transition-opacity duration-1000 ease-in-out ${
+            index === currentIndex ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ))}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {images.map((_, index) => (
+          <span
+            key={index}
+            className={`block h-2 w-2 rounded-full ${
+              index === currentIndex ? "bg-white" : "bg-gray-500"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+export default Jumbotron;

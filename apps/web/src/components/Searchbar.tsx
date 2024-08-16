@@ -2,9 +2,9 @@ import React from "react";
 
 const Searchbar = () => {
   return (
-    <div className="flex w-96 justify-center">
-      <form className="form relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-2xl">
-        <button className="absolute left-2 top-1/2 -translate-y-1/2 p-1">
+    <div className="flex justify-center max-w-full md:w-full lg:w-96">
+      <form className="form relative">
+        <button className="absolute left-2 top-1/2 -translate-y-1/2">
           <svg
             width="17"
             height="16"

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Register = () => {
   return (
-    <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-[url('/kpop1.jpeg')] bg-cover bg-center bg-no-repeat sm:h-[80vh] md:h-[90vh] lg:h-screen">
+    <div className="container mx-auto flex min-h-screen max-w-full items-center justify-center bg-grey1">
       <div className="w-96 rounded-3xl bg-white p-4 text-black1 shadow sm:p-8">
         <Link
           href="/"
@@ -71,13 +71,18 @@ const Register = () => {
           <p className="px-3 dark:text-gray-600">OR</p>
           <hr className="w-full dark:text-gray-600" />
         </div>
-        <button
-          aria-label="Login with Twitter"
-          role="button"
-          className="flex h-10 w-full items-center justify-center space-x-4 rounded-full border bg-grey1 p-4 font-bold hover:bg-grey2 focus:ring-2 focus:ring-offset-1"
+        <Link
+          href="/register/credentials"
+          className="hover:text-orange1 text-sm font-bold text-black1"
         >
-          <p>Sign up with an email adress</p>
-        </button>
+          <button
+            aria-label="Login with Twitter"
+            role="button"
+            className="flex h-10 w-full items-center justify-center space-x-4 rounded-full border bg-grey1 p-4 font-bold hover:bg-grey2 focus:ring-2 focus:ring-offset-1"
+          >
+            <p>Sign up with an email adress</p>
+          </button>
+        </Link>
       </div>
     </div>
   );
