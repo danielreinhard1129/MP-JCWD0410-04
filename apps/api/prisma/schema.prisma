@@ -26,6 +26,7 @@ model User {
   email        String        @unique
   password     String
   pfp          String
+  referral     String        @unique
   role         Role
   provider     Provider
   isDeleted    Boolean       @default(false)
@@ -36,6 +37,7 @@ model User {
   checkouts    Checkout[]
   userVouchers UserVoucher[]
   userRewards  UserReward[]
+  point        Point?
 
   @@map("users")
 }
@@ -43,7 +45,7 @@ model User {
 model Event {
   id             Int      @id @default(autoincrement())
   title          String
-  desc           String
+  desc           String   @db.LongText
   img            String
   price          Int
   quota          Int
@@ -127,10 +129,12 @@ model Review {
 model Point {
   id        Int      @id @default(autoincrement())
   total     Int      @default(0)
-  expDate   DateTime
+  expDate   DateTime @default(now())
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("points")
 }
@@ -139,6 +143,8 @@ model Reward {
   id          Int          @id @default(autoincrement())
   code        String       @unique
   expDate     DateTime
+  quota       Int
+  claimed     Int          @default(0)
   isDeleted   Boolean      @default(false)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -157,27 +163,27 @@ model Checkout {
   isDeleted   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  userId      Int
+  eventId     Int
 
   user     User      @relation(fields: [userId], references: [id])
   event    Event     @relation(fields: [eventId], references: [id])
-  userId   Int
-  eventId  Int
   payments Payment[]
 
   @@map("checkouts")
 }
 
 model Payment {
-  id        Int            @id @default(autoincrement())
-  status    Payment_Status
-  isDeleted Boolean        @default(false)
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-
-  checkout       Checkout     @relation(fields: [checkoutId], references: [id])
-  paymentproof   PaymentProof @relation(fields: [paymentProofId], references: [id])
+  id             Int            @id @default(autoincrement())
+  status         Payment_Status
+  isDeleted      Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
   checkoutId     Int
   paymentProofId Int
+
+  checkout     Checkout     @relation(fields: [checkoutId], references: [id])
+  paymentproof PaymentProof @relation(fields: [paymentProofId], references: [id])
 
   @@map("payments")
 }
@@ -191,11 +197,11 @@ model Voucher {
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    Int
+  eventId   Int
 
   user         User          @relation(fields: [userId], references: [id])
   event        Event         @relation(fields: [eventId], references: [id])
-  userId       Int
-  eventId      Int
   userVouchers UserVoucher[]
 
   @@map("vouchers")
@@ -217,11 +223,11 @@ model UserReward {
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    Int
+  rewardId  Int
 
-  user     User   @relation(fields: [userId], references: [id])
-  reward   Reward @relation(fields: [rewardId], references: [id])
-  userId   Int
-  rewardId Int
+  user   User   @relation(fields: [userId], references: [id])
+  reward Reward @relation(fields: [rewardId], references: [id])
 
   @@map("userrewards")
 }
@@ -231,11 +237,11 @@ model UserVoucher {
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  user      User    @relation(fields: [userId], references: [id])
-  voucher   Voucher @relation(fields: [voucherId], references: [id])
   userId    Int
   voucherId Int
+
+  user    User    @relation(fields: [userId], references: [id])
+  voucher Voucher @relation(fields: [voucherId], references: [id])
 
   @@map("uservouchers")
 }

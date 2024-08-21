@@ -3,9 +3,10 @@ import YupPassword from 'yup-password';
 YupPassword(Yup);
 
 export const RegisterSchema = Yup.object().shape({
-  username: Yup.string().required("Username is required").max(15),
+  username: Yup.string().required("Username is required").min(6).max(15),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("Password is required")
+    .minSymbols(1)
     .minLowercase(1)
     .minNumbers(1)
     .minUppercase(1)

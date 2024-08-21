@@ -13,21 +13,25 @@ import { useFormik } from "formik";
 import { RegisterSchema } from "./schemas/RegisterSchema";
 import useRegister from "@/hooks/api/auth/useRegister";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 // import Link from "next/link";
 
 const RegisterCredentialsPage = () => {
   const { mutateAsync: register, isPending: isLoading } = useRegister();
+  const pathname = usePathname();
+
+  const role = pathname === "/register/creator" ? "EO" : "CUSTOMER";
 
   const formik = useFormik({
     initialValues: {
       username: "",
       email: "",
       password: "",
+      referral: "",
+      role,
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values, { resetForm }) => {
-      console.log(values);
-      
       await register(values);
       resetForm();
     },
@@ -85,6 +89,9 @@ const RegisterCredentialsPage = () => {
               Sign in here
             </Link>
           </p>
+          <p className="my-4 text-center text-xl border rounded-xl bg-blue3 text-blue2 p-1">
+            {pathname === "/register/creator" ? "Event Organizer Form" : "Registering as Customer"}
+          </p>
           <form className="space-y-8" onSubmit={formik.handleSubmit}>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -105,6 +112,7 @@ const RegisterCredentialsPage = () => {
                   <p className="text-xs text-red-500">{formik.errors.email}</p>
                 ) : null}
               </div>
+
               <div className="space-y-2">
                 <label htmlFor="username" className="block text-sm">
                   Username
@@ -145,6 +153,23 @@ const RegisterCredentialsPage = () => {
                   </p>
                 ) : null}
               </div>
+              {pathname === "/register/creator" ? null : (
+                <div className="space-y-2">
+                  <label htmlFor="referral" className="block text-sm">
+                    Referral Code (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    name="referral"
+                    id="referral"
+                    value={formik.values.referral}
+                    placeholder="L3r0yJ"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  />
+                </div>
+              )}
             </div>
             <button
               type="submit"

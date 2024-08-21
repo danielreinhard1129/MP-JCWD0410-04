@@ -22,7 +22,7 @@ export const loginService = async (body: Pick<User, 'email' | 'password'>) => {
       throw new Error("Incorrect password");
     }
 
-    const token = sign({id: user.id}, JWT_SECRET!, {expiresIn: "2h"});
+    const token = sign({role: user.role, id: user.id}, JWT_SECRET!, {expiresIn: "2h"});
 
     const {password: pass, ...userWithoutPassword} = user;
 
