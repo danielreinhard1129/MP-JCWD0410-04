@@ -83,6 +83,22 @@ const Register = () => {
             <p>Sign up with an email adress</p>
           </button>
         </Link>
+        <hr className="w-full dark:text-gray-600 my-8" />
+        <p className="mb-2 text-center text-sm dark:text-gray-600">
+          Here to post your events?
+        </p>
+        <Link
+          href="/register/creator"
+          className="hover:text-orange1 text-sm font-bold text-black1"
+        >
+          <button
+            aria-label="Login with Twitter"
+            role="button"
+            className="flex h-10 w-full items-center justify-center space-x-4 rounded-full border bg-grey1 p-4 font-bold hover:bg-grey2 focus:ring-2 focus:ring-offset-1"
+          >
+            <p>Register as an Event Organizer</p>
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Searchbar from "./Searchbar";
 import { signOut, useSession } from "next-auth/react";
-import Jumbotron from "./Jumbotron";
+import NavbarAuth from "./NavbarAuth";
 
 const Navbar = () => {
   const session = useSession();
@@ -46,21 +46,9 @@ const Navbar = () => {
                 My Tickets
               </Link>
             </div>
-            {session.data?.user ? null : <Jumbotron />}
             <div className="">
-              <Link
-                href="/login"
-                className="rounded-full bg-blue1 px-6 py-2 text-sm font-bold text-white hover:bg-blue3"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="hover:text-orange1 text-sm font-bold text-black1 hover:text-blue1"
-              >
-                Register
-              </Link>
-              <button onClick={() => signOut()}>logout</button>
+              {session.data?.user ? null : <NavbarAuth />}
+              {session.data?.user? <button onClick={() => signOut()}>logout</button> : null}
             </div>
           </div>
         </div>
@@ -107,7 +95,9 @@ const Navbar = () => {
             >
               My Tickets
             </Link>
-            <Link
+            {session.data?.user ? null : <NavbarAuth />}
+            {session.data?.user? <button onClick={() => signOut()}>logout</button> : null}
+            {/* <Link
               href="/login"
               className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"
             >
@@ -118,7 +108,7 @@ const Navbar = () => {
               className="block text-sm font-bold text-black1 hover:text-blue1"
             >
               Register
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

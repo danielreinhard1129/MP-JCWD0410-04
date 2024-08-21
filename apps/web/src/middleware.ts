@@ -23,8 +23,8 @@ export default auth((req) => {
   )
 
   // Redirect unauthenticated users to login if they are accessing private routes
-  if (!req.auth && isPrivateRoute) {
-    const newUrl = new URL("/login", req.nextUrl.origin);
+  if ((req.auth?.user.role === "CUSTOMER" || !req.auth) && isPrivateRoute) {
+    const newUrl = new URL("/register", req.nextUrl.origin);
     return Response.redirect(newUrl);
   }
 
