@@ -53,10 +53,7 @@ export const registerService = async (body: User) => {
       });
 
       if (referredUser) {
-        const currentDate = new Date();
-        const expDate = new Date(
-          currentDate.setMonth(currentDate.getMonth() + 3),
-        );
+        const expDate = new Date(Date.now() + 7776000 * 1000);
 
         await prisma.point.update({
           where: { userId: referredUser.id },

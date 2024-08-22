@@ -219,10 +219,11 @@ model PaymentProof {
 }
 
 model UserReward {
-  id        Int      @id @default(autoincrement())
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        Int           @id @default(autoincrement())
+  status    Reward_Status @default(UNUSED)
+  isDeleted Boolean       @default(false)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
   userId    Int
   rewardId  Int
 
@@ -260,4 +261,9 @@ enum Payment_Status {
 enum Provider {
   CREDENTIALS
   GOOGLE
+}
+
+enum Reward_Status {
+  USED
+  UNUSED
 }
