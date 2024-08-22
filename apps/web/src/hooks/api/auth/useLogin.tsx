@@ -56,14 +56,13 @@ const useLogin = () => {
       return data;
     },
     onSuccess: async (data) => {
-      await signIn('credentials', {...data, redirect: false})
+      await signIn("credentials", { ...data, redirect: false });
       toast.success("Login success");
-      router.replace("/");
+      router.replace(data.role === "CUSTOMER" ? "/" : "/dashboard");
     },
     onError: (error: AxiosError<any>) => {
-
       console.log();
-      
+
       toast.error(error.response?.data);
     },
   });
