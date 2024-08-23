@@ -83,7 +83,7 @@ const LayoutWrapper = async ({ children }: PropsWithChildren) => {
       </div>
       <div className="w-[100%] m-4">
         <NavbarDashboard />
-        {children}
+        <div className="bg-gray-300 mt-4 rounded-2xl p-4 shadow-sm">{children}</div>
       </div>
     </div>
   );

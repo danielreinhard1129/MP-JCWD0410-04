@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full bg-white px-6 py-3 shadow-sm">
+    <nav className="sticky top-0 z-10 w-full bg-blue2 px-6 py-3 shadow-sm">
       <div className="container mx-auto flex max-w-7xl items-center justify-between gap-4 md:justify-evenly lg:justify-around">
         <Link
           href="/"
@@ -55,7 +55,7 @@ const Navbar = () => {
             <div className="">
               {session.data?.user ? null : <NavbarAuth />}
               {session.data?.user ? (
-                <button onClick={() => signOut()}>logout</button>
+                <button onClick={() => signOut()} className="text-sm font-bold text-black1 hover:text-blue1">Logout</button>
               ) : null}
             </div>
           </div>
