@@ -4,7 +4,6 @@ const ProfilePage = () => {
   return (
     <div>
       <div>Test</div>
-      <div>Test2</div>
     </div>
   )
 }

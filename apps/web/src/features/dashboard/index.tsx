@@ -1,53 +1,53 @@
-import { TbCalendarStar, TbCalendarTime } from "react-icons/tb";
-import {DashboardCard, DashboardCardContent} from "@/components/ui/dashboardCard";
+import {
+  DashboardCardBackground,
+  DashboardCardHeader
+} from "@/components/ui/dashboardCard";
+import { TbCalendarStar } from "react-icons/tb";
 
 const DashboardPage = () => {
-  
   return (
-    <div className='bg-white shadow-sm mt-4 rounded-2xl'>
-      <h1 className="p-5 text-xl">
-        Dashboard
-      </h1>
-      <div className="p-4 pt-0 flex flex-wrap gap-4">
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+    <div className="mt-4 rounded-2xl bg-gray-300 shadow-sm">
+      <h1 className="p-5 text-xl">Dashboard</h1>
+      <div className="flex flex-wrap gap-4 p-4 pt-0">
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Events</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Coupons</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Reviews</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Tickets Sold</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Sales</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Attendees</p>
-          </DashboardCardContent>
-        </DashboardCard>
+          </DashboardCardHeader>
+        </DashboardCardBackground>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;
