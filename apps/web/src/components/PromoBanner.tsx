@@ -15,7 +15,7 @@ const PromoBanner = () => {
             </h2>
           </div>
           <Link
-            href="/login"
+            href="/events"
             className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"
           >
             Explore

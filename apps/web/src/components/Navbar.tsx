@@ -29,6 +29,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Menu */}
+        <Link
+          href="/events"
+          className="block text-sm font-bold text-black1 hover:text-blue1"
+        >
+          Events
+        </Link>
         <div className="hidden items-center md:flex">
           <div className="flex items-center space-x-6">
             <Searchbar />
@@ -48,7 +54,9 @@ const Navbar = () => {
             </div>
             <div className="">
               {session.data?.user ? null : <NavbarAuth />}
-              {session.data?.user? <button onClick={() => signOut()}>logout</button> : null}
+              {session.data?.user ? (
+                <button onClick={() => signOut()}>logout</button>
+              ) : null}
             </div>
           </div>
         </div>
@@ -81,6 +89,12 @@ const Navbar = () => {
         <div className="md:hidden">
           <div className="flex flex-col items-center space-y-3 px-6 pb-4 pt-2">
             <div className="py-2">
+              <Link
+                href="/events"
+                className="block text-sm font-bold text-black1 hover:text-blue1"
+              >
+                Events
+              </Link>
               <Searchbar />
             </div>
             <Link
@@ -96,7 +110,9 @@ const Navbar = () => {
               My Tickets
             </Link>
             {session.data?.user ? null : <NavbarAuth />}
-            {session.data?.user? <button onClick={() => signOut()}>logout</button> : null}
+            {session.data?.user ? (
+              <button onClick={() => signOut()}>logout</button>
+            ) : null}
             {/* <Link
               href="/login"
               className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"

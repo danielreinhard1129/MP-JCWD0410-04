@@ -1,69 +1,36 @@
-import BuyButton from "@/components/BuyButton";
+"use client";
 
-export default function DetailPage() {
+import { Loader2 } from "lucide-react";
+import DetailPageComponent from "./components/DetailPageComponent";
+import useGetEventDetail from "@/hooks/api/event/useGetEventDetail";
+import { useParams } from 'next/navigation';
+
+const DetailPage = () => {
+  const params = useParams();
+  const id = params.id as string;
+
+  const { data, isPending } = useGetEventDetail(id);
+
+  if (isPending) {
+    return <Loader2 className="mx-auto animate-spin" />;
+  }
+
+  if (!data) {
+    return <h1 className="text-center">Event not found</h1>;
+  }
+
   return (
-    <div className="mx-auto min-h-screen flex-col">
-      <div className="relative flex h-64 w-full justify-center sm:h-96">
-        <div className="absolute inset-0 bg-[url('/kpop3.jpg')] bg-cover bg-center bg-no-repeat blur-sm"></div>
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative self-center">
-          <img src="/kpop3.jpg" className="max-w-sm sm:max-w-2xl" />
-        </div>
-      </div>
-      <div className="min-h-screen bg-white">
-        {/* Sticky Section */}
-        <div className="sticky top-0 z-10 bg-white px-6 py-3 shadow-sm">
-          <div className="container mx-auto flex max-w-7xl flex-col items-center justify-around px-4 py-3 md:flex-row md:px-8">
-            <div className="mb-2 flex w-full flex-col gap-4 space-y-2 text-center text-sm font-bold md:mb-0 md:w-auto md:flex-row md:space-x-4 md:space-y-0 md:text-left md:text-base">
-              <a href="#pricing" className="text-black hover:text-blue3">
-                Description
-              </a>
-              <a
-                href="#exchange-refund"
-                className="text-black hover:text-blue3"
-              >
-                Exchange & Refund Policy
-              </a>
-              <a
-                href="#admission-policy"
-                className="text-black hover:text-blue3"
-              >
-                FAQ
-              </a>
-            </div>
-            <BuyButton />
-          </div>
-        </div>
-
-        {/* Event Details Section */}
-        <section className="container mx-auto flex max-w-7xl flex-col-reverse justify-between gap-8 px-4 py-12 md:flex-row md:px-8">
-          <div className="md:max-w-4xl">
-            <h2 className="mb-6 text-xl font-bold md:text-2xl">
-              EVENT DETAILS
-            </h2>
-            <p className="mb-4 text-sm italic md:text-base">
-              "George Harliono is very talented; he's got a phenomenal career
-              ahead of him." – Russian pianist Denis Matsuev
-            </p>
-            <p className="mb-6 text-sm md:text-base">
-              George Harliono, a British-Indonesian concert pianist, soared to
-              new heights in 2023 when he clinched the Silver Medal at the
-              prestigious XVII International Tchaikovsky Competition. ...
-            </p>
-            <h3 className="mb-4 text-lg font-semibold md:text-xl">
-              About the recital
-            </h3>
-            <p className="mb-6 text-sm md:text-base">
-              A perfect symbiosis of music, passion, and piano, the remarkably
-              young pianist George Harliono never fails to deliver awe-inspiring
-              moments on stage. ...
-            </p>
-          </div>
-          <button className="mt-6 h-10 w-full self-center rounded-full border-2 border-blue1 bg-white px-4 py-2 text-sm font-normal text-blue1 hover:border-blue3 hover:text-blue3 md:mt-0 md:w-auto md:whitespace-nowrap md:text-base">
-            View Seatmap
-          </button>
-        </section>
-      </div>
+    <div className="flex flex-row gap-4">
+      <DetailPageComponent
+        id={data.id}
+        title={data.title}
+        price={data.price}
+        thumbnail={data.img}
+        description={data.desc}
+        date={data.date}
+      />
     </div>
   );
-}
+};
+
+export default DetailPage;

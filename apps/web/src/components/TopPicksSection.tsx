@@ -1,16 +1,12 @@
 "use client";
 
-import * as React from "react";
-
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious
 } from "@/components/ui/carousel";
-import DummyCard from "./DummyCard";
+import CardList from "./CardList";
 
 export function TopPicksSection() {
   return (
@@ -20,16 +16,8 @@ export function TopPicksSection() {
       }}
       className="mx-auto w-full max-w-7xl border-t-2 border-blue3"
     >
-      <CarouselContent className="-ml-1">
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
-        <DummyCard/>
+      <CarouselContent className="-ml-1 p-8">
+        <CardList/>
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

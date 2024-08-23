@@ -1,8 +1,9 @@
+import DetailPage from '@/features/detail'
 import React from 'react'
 
 const ID = () => {
   return (
-    <div>ID</div>
+    <DetailPage/>
   )
 }
 
