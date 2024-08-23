@@ -1,21 +1,17 @@
-"use client";
+'use client'
 
 import { axiosInstance } from "@/lib/axios";
-import { signOut, useSession } from "next-auth/react";
-// import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-// import { logoutAction } from "@/redux/slices/userSlice";
+import { getSession, signOut } from "next-auth/react";
 import { useEffect } from "react";
 
 const useAxios = () => {
-  // const { token } = useAppSelector((state) => state.user);
-  // const dispatch = useAppDispatch();
-
-  const session = useSession();
-
+  
   useEffect(() => {
+    
     const requestIntercept = axiosInstance.interceptors.request.use(
-      (config) => {
-        const token = session.data?.user.token;
+      async(config) => {
+        const session = await getSession();
+        const token = session?.user.token;
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -30,7 +26,6 @@ const useAxios = () => {
       (response) => response,
       (err) => {
         if (err?.response.status === 403) {
-          // dispatch(logoutAction());
           signOut();
         }
 
@@ -42,7 +37,7 @@ const useAxios = () => {
       axiosInstance.interceptors.request.eject(requestIntercept);
       axiosInstance.interceptors.response.eject(responseIntercept);
     };
-  }, [session]);
+  }, []);
 
   return { axiosInstance };
 };
