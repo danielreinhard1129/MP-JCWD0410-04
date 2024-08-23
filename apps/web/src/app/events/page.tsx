@@ -1,9 +1,8 @@
-import React from 'react'
+import EventListPage from "@/features/event-list";
+import React from "react";
 
 const Events = () => {
-  return (
-    <div>Events</div>
-  )
-}
+  return <EventListPage />;
+};
 
-export default Events
+export default Events;
