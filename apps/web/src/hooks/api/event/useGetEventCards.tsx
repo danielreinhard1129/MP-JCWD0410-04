@@ -16,7 +16,7 @@ const useGetEventCards = (queries: GetCardsQueries) => {
     queryKey: ["events"],
     queryFn: async () => {
       const { data } = await axiosInstance.get<PageableResponse<EventCard>>(
-        "/events",
+        "/events/",
         { params: queries },
       );
       return data;

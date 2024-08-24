@@ -38,8 +38,6 @@ const RegisterCredentialsPage = () => {
     },
   });
 
-  console.log(formik.errors);
-
   return (
     // <main className="flex justify-center pt-20">
     //   <Card className="w-[350px]">
@@ -75,21 +73,20 @@ const RegisterCredentialsPage = () => {
       <AuthForm>
         <Link
           href="/"
-          className="hover:text-orange1 text-sm font-bold text-black1"
+          className="text-sm font-bold text-black1"
         >
           <img src="/tixLogo300.png" className="mx-auto w-40" />
         </Link>
-        <p className="my-4 text-center text-sm dark:text-gray-600">
+        <p className="my-4 text-center text-sm text-gray-600">
           Already have an account?
           <Link
             href="/login"
-            rel="noopener noreferrer"
-            className="hover:underline focus:underline"
+            className="hover:underline"
           >
             Sign in here
           </Link>
         </p>
-        <p className="my-4 rounded-xl border bg-blue3 p-1 text-center text-xl text-blue2">
+        <p className="my-4 rounded-xl bg-blue3 p-1 text-center text-xl text-blue2">
           {pathname === "/register/creator"
             ? "Event Organizer Form"
             : "Registering as Customer"}
@@ -108,7 +105,7 @@ const RegisterCredentialsPage = () => {
                 placeholder="leroy@jenkins.com"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                className="w-full rounded-md border px-3 py-2 border-gray-300 bg-gray-50 text-gray-800"
               />
               {!!formik.touched.email && !!formik.errors.email ? (
                 <p className="text-xs text-red-500">{formik.errors.email}</p>
@@ -127,7 +124,7 @@ const RegisterCredentialsPage = () => {
                 placeholder="LeroyJenkins"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                className="w-full rounded-md border px-3 py-2 border-gray-300 bg-gray-50 text-gray-800"
               />
               {!!formik.touched.username && !!formik.errors.username ? (
                 <p className="text-xs text-red-500">{formik.errors.username}</p>
@@ -145,7 +142,7 @@ const RegisterCredentialsPage = () => {
                 placeholder="******"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                className="w-full rounded-md border px-3 py-2 border-gray-300 bg-gray-50 text-gray-800"
               />
               {!!formik.touched.password && !!formik.errors.password ? (
                 <p className="text-xs text-red-500">{formik.errors.password}</p>
@@ -164,7 +161,7 @@ const RegisterCredentialsPage = () => {
                   placeholder="L3r0yJ"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className="w-full rounded-md border px-3 py-2 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                  className="w-full rounded-md border px-3 py-2 border-gray-300 bg-gray-50 text-gray-800"
                 />
               </div>
             )}

@@ -7,15 +7,14 @@ const Register = () => {
     <AuthForm>
       <Link
         href="/"
-        className="hover:text-orange1 text-sm font-bold text-black1"
+        className="text-sm font-bold text-black1"
       >
         <img src="/tixLogo300.png" className="mx-auto w-40" />
       </Link>
-      <p className="my-4 text-center text-sm dark:text-gray-600">
+      <p className="my-4 text-center text-sm text-gray-600">
         Have an account?
         <Link
           href="/login"
-          rel="noopener noreferrer"
           className="hover:underline focus:underline"
         >
           {" "}
