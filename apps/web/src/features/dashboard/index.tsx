@@ -1,53 +1,77 @@
-import { TbCalendarStar, TbCalendarTime } from "react-icons/tb";
-import {DashboardCard, DashboardCardContent} from "@/components/ui/dashboardCard";
+import {
+  DashboardCardBackground,
+  DashboardCardHeader,
+} from "@/components/ui/dashboardCard";
+import { TbCalendarStar } from "react-icons/tb";
 
 const DashboardPage = () => {
-  
   return (
-    <div className='bg-white shadow-sm mt-4 rounded-2xl'>
-      <h1 className="p-5 text-xl">
-        Dashboard
-      </h1>
-      <div className="p-4 pt-0 flex flex-wrap gap-4">
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+    <div>
+      <h1 className="p-2 text-xl">Dashboard</h1>
+      <div className="flex flex-wrap gap-4 pt-0">
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Events</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Coupons</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Reviews</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Tickets Sold</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Sales</p>
-          </DashboardCardContent>
-        </DashboardCard>
-        <DashboardCard>
-          <DashboardCardContent>
-            <TbCalendarStar/>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
+        <DashboardCardBackground>
+          <DashboardCardHeader>
+            <TbCalendarStar />
             <p>Attendees</p>
-          </DashboardCardContent>
-        </DashboardCard>
+          </DashboardCardHeader>
+          <div className="text-center h-24 content-center">
+            <p className="m-1 text-xl">2 Active Events</p>
+            <p className="m-1 text-xl">5 Past Events</p>
+          </div>
+        </DashboardCardBackground>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

@@ -7,7 +7,7 @@ const DashboardEventPage = () => {
   const pathname = usePathname();
 
   return (
-    <div className='bg-blue2 mt-4 rounded-2xl p-4'>
+    <div>
       <div>{pathname}</div>
       <div className='flex justify-between'>
         <div className='flex gap-2'>
