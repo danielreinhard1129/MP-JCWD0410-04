@@ -43,77 +43,40 @@ model User {
 }
 
 model Event {
-  id             Int      @id @default(autoincrement())
-  title          String
-  desc           String   @db.LongText
-  img            String
-  price          Int
-  quota          Int
-  available_seat Int
-  date           DateTime
-  venueId        Int
-  userId         Int
-  isDeleted      Boolean  @default(false)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            Int      @id @default(autoincrement())
+  title         String
+  desc          String   @db.LongText
+  img           String
+  price         Int
+  quota         Int
+  availableSeat Int
+  location      String
+  startDate     DateTime
+  endDate       DateTime
+  userId        Int
+  categoryId    Int
+  isDeleted     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  user            User            @relation(fields: [userId], references: [id])
-  venue           Venue           @relation(fields: [venueId], references: [id])
-  vouchers        Voucher[]
-  checkouts       Checkout[]
-  EventCategories EventCategory[]
+  user      User       @relation(fields: [userId], references: [id])
+  category  Category   @relation(fields: [categoryId], references: [id])
+  vouchers  Voucher[]
+  checkouts Checkout[]
 
   @@map("events")
 }
 
 model Category {
-  id              Int             @id @default(autoincrement())
-  category        String
-  isDeleted       Boolean         @default(false)
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  eventCategories EventCategory[]
-
-  @@map("categories")
-}
-
-model EventCategory {
-  id         Int      @id @default(autoincrement())
-  isDeleted  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  eventId    Int
-  categoryId Int
-
-  event    Event    @relation(fields: [eventId], references: [id])
-  category Category @relation(fields: [categoryId], references: [id])
-
-  @@map("eventcategories")
-}
-
-model Venue {
   id        Int      @id @default(autoincrement())
-  address   String   @unique
+  category  String
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  cityId    Int
 
-  city   City    @relation(fields: [cityId], references: [id])
   events Event[]
 
-  @@map("venues")
-}
-
-model City {
-  id        Int      @id @default(autoincrement())
-  name      String
-  isDeleted Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  venues    Venue[]
-
-  @@map("cities")
+  @@map("categories")
 }
 
 model Review {

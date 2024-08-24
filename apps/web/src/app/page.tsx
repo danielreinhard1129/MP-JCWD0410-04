@@ -10,11 +10,11 @@ const page = () => {
   return (
     <div className="min-h-screen max-w-full bg-white px-0 md:px-0 lg:px-0">
       <JumbotronDummy/>
-      <CategoryCarousel />
+      {/* <CategoryCarousel /> */}
       <PopularEventsTitle />
       <TopPicksSection />
       <PromoBanner />
-      <PromoEventsTitle />
+      {/* <PromoEventsTitle /> */}
     </div>
   );
 };

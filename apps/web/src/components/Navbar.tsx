@@ -1,130 +1,181 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Searchbar from "./Searchbar";
 import { signOut, useSession } from "next-auth/react";
 import NavbarAuth from "./NavbarAuth";
 
 const Navbar = () => {
   const session = useSession();
-  //session.data?.user.id
   const [isOpen, setIsOpen] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <nav className="sticky top-0 z-10 w-full bg-white px-6 py-3 shadow-sm">
-      <div className="container mx-auto flex max-w-7xl items-center justify-between gap-4 md:justify-evenly lg:justify-around">
+    <nav className="sticky top-0 z-10 w-full md:h-20 bg-white px-4 py-2 shadow-sm sm:px-6 sm:py-3">
+      <div className="container mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4 md:justify-evenly lg:justify-around">
         <Link
           href="/"
-          className="hover:text-orange1 text-sm font-bold text-black1"
+          className="hover:text-orange1 text-xs font-bold text-black1 sm:text-sm"
         >
           <img
             src="/tixLogo300.png"
             alt="TixStation Logo"
-            className="w-28 object-cover md:w-40"
+            className="w-20 object-cover sm:w-28 md:w-40"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <Link
-          href="/events"
-          className="block text-sm font-bold text-black1 hover:text-blue1"
-        >
-          Events
-        </Link>
-        <div className="hidden items-center md:flex">
-          <div className="flex items-center space-x-6">
+        <div className="hidden items-center lg:flex lg:flex-grow lg:justify-center">
+          <div className="flex items-center space-x-4 lg:space-x-6">
+            <Link
+              href="/events"
+              className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+            >
+              Events
+            </Link>
+            <Link
+              href="/events"
+              className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+            >
+              Help Center
+            </Link>
             <Searchbar />
-            <div className="flex space-x-4">
-              <Link
-                href="/create"
-                className="text-sm font-bold text-black1 hover:text-blue1"
-              >
-                Create Event
-              </Link>
-              <Link
-                href="/mytickets"
-                className="text-sm font-bold text-black1 hover:text-blue1"
-              >
-                My Tickets
-              </Link>
-            </div>
+            <Link
+              href="/login"
+              className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+            >
+              Create Event
+            </Link>
+            <Link
+              href="/dashboard"
+              className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+            >
+              My Tickets
+            </Link>
             <div className="">
-              {session.data?.user ? null : <NavbarAuth />}
               {session.data?.user ? (
-                <button onClick={() => signOut()}>logout</button>
-              ) : null}
+                <button
+                  onClick={() => signOut()}
+                  className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavbarAuth />
+              )}
             </div>
           </div>
         </div>
 
+        {/* Tablet Menu */}
+        {isTablet && (
+          <div className="flex items-center space-x-2">
+            <Searchbar />
+            <button
+              onClick={toggleMenu}
+              className="text-black1 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        )}
+
         {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="text-black1 focus:outline-none md:hidden"
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        {!isTablet && (
+          <button
+            onClick={toggleMenu}
+            className="text-black1 focus:outline-none lg:hidden"
+            aria-label="Toggle menu"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
-        </button>
+            <svg
+              className="h-5 w-5 sm:h-6 sm:w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        )}
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile and Tablet Menu */}
       {isOpen && (
-        <div className="md:hidden">
-          <div className="flex flex-col items-center space-y-3 px-6 pb-4 pt-2">
-            <div className="py-2">
-              <Link
-                href="/events"
-                className="block text-sm font-bold text-black1 hover:text-blue1"
-              >
-                Events
-              </Link>
-              <Searchbar />
-            </div>
+        <div className="lg:hidden">
+          <div className="flex flex-col items-center space-y-2 px-4 pb-3 pt-2 sm:space-y-3 sm:px-6 sm:pb-4">
+            {!isTablet && (
+              <div className="w-full">
+                <Searchbar />
+              </div>
+            )}
+            <Link
+              href="/events"
+              className="block text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+            >
+              Events
+            </Link>
             <Link
               href="/create"
-              className="block text-sm font-bold text-black1 hover:text-blue1"
+              className="block text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
             >
               Create Event
             </Link>
             <Link
               href="/mytickets"
-              className="block text-sm font-bold text-black1 hover:text-blue1"
+              className="block text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
             >
               My Tickets
             </Link>
-            {session.data?.user ? null : <NavbarAuth />}
-            {session.data?.user ? (
-              <button onClick={() => signOut()}>logout</button>
-            ) : null}
-            {/* <Link
-              href="/login"
-              className="block rounded-full bg-blue1 px-6 py-2 text-center text-sm font-bold text-white hover:bg-blue3"
-            >
-              Login
-            </Link>
             <Link
-              href="/register"
-              className="block text-sm font-bold text-black1 hover:text-blue1"
+              href="/events"
+              className="block text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
             >
-              Register
-            </Link> */}
+              Help Center
+            </Link>
+            {session.data?.user ? (
+              <button
+                onClick={() => signOut()}
+                className="text-xs font-bold text-black1 hover:text-blue1 sm:text-sm"
+              >
+                Logout
+              </button>
+            ) : (
+              <NavbarAuth />
+            )}
           </div>
         </div>
       )}
