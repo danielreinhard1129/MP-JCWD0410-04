@@ -18,7 +18,7 @@ const useResetPassword = () => {
   return useMutation({
     mutationFn: async (payload: ResetPasswordPayload) => {
       const { data } = await axiosInstance.patch(
-        "/api/auth/reset-password",
+        "/auth/reset-password",
         { password: payload.password },
         { headers: { Authorization: `Bearer ${payload.token}` } },
       );

@@ -52,7 +52,7 @@ const useLogin = () => {
 
   return useMutation({
     mutationFn: async (payload: LoginPayload) => {
-      const { data } = await axiosInstance.post("/api/auth/login", payload);
+      const { data } = await axiosInstance.post("/auth/login", payload);
       return data;
     },
     onSuccess: async (data) => {
