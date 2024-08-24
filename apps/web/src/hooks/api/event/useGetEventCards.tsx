@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 interface GetCardsQueries extends PaginationQueries {
   search?: string;
+  category?: string;
 }
 
 // Hook react query untuk get data

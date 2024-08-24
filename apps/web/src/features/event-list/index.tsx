@@ -1,17 +1,43 @@
 "use client";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import EventCards from "@/components/EventCards";
+import useGetCategories from "@/hooks/api/category/useGetCategories";
 import useGetEventCards from "@/hooks/api/event/useGetEventCards";
 import { format } from "date-fns";
 import { Loader2, CalendarIcon, GridIcon, ListIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const EventList = () => {
+  const searchParams = useSearchParams();
+
+  const category = searchParams.get("category");
+
   const [page, setPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(category || "");
   const { data, isPending } = useGetEventCards({
     page,
-    take: 11,
+    take: 9,
+    category: selectedCategory,
   });
+
+  const { data: item } = useGetCategories();
+
+  const handleSelectCategory = (value: string) => {
+    if (value === "all") {
+      return setSelectedCategory("");
+    }
+    setSelectedCategory(value);
+  };
 
   if (isPending) {
     return <Loader2 className="mx-auto animate-spin" />;
@@ -38,11 +64,28 @@ const EventList = () => {
           </button>
         </div>
         <div className="flex items-center space-x-2">
-          <button className="flex items-center rounded bg-gray-200 px-2 py-1 text-sm sm:px-3 sm:py-2 sm:text-base">
-            <CalendarIcon className="mr-1 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-            <span className="hidden sm:inline">Select date range</span>
-            <span className="sm:hidden">Date</span>
-          </button>
+          <Select
+            onValueChange={handleSelectCategory}
+            defaultValue={category || ""}
+          >
+            <SelectTrigger className="sm:w-[200px]">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Category</SelectLabel>
+                <SelectItem value="all">All</SelectItem>
+                {item?.map((categories, index: number) => {
+                  return (
+                    <SelectItem value={categories.category} key={index}>
+                      {categories.category.charAt(0).toUpperCase() +
+                        categories.category.slice(1).toLowerCase()}
+                    </SelectItem>
+                  );
+                })}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
           <button className="rounded bg-gray-200 p-1 sm:p-2">
             <GridIcon className="h-4 w-4 sm:h-5 sm:w-5" />
           </button>
@@ -54,7 +97,9 @@ const EventList = () => {
 
       <div className="mb-4 rounded bg-gray-200 p-2 text-sm sm:mb-6 sm:p-3 sm:text-base">
         <CalendarIcon className="mr-1 inline-block h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-        <span className="hidden sm:inline">01 Aug 2024 (Thu.) ~ 31 Aug 2024 (Sat.)</span>
+        <span className="hidden sm:inline">
+          01 Aug 2024 (Thu.) ~ 31 Aug 2024 (Sat.)
+        </span>
         <span className="sm:hidden">Aug 1-31, 2024</span>
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
