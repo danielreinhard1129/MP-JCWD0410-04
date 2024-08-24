@@ -7,17 +7,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 interface CreateEventPayload {
-  //   name: string;
-  //   description: string;
-  //   location: string;
-  //   startDate: Date | undefined;
-  //   endDate: Date | undefined;
-  //   price: number;
-  //   discount: number;
-  //   quota: number;
-  //   thumbnail: File | null;
-  //   categoryId: number;
-
   title: string;
   desc: string;
   startDate: Date | undefined;
