@@ -44,7 +44,7 @@ const JumbotronCarousel: React.FC = () => {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
-        className="h-96 w-full"
+        className="h-48 sm:h-96 w-full"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center transition-opacity duration-300">
@@ -59,12 +59,12 @@ const JumbotronCarousel: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-prev !left-4 !top-1/2 !-translate-y-1/2 !bg-white !bg-opacity-50 !w-10 !h-10 !rounded-full !flex items-center justify-center after:!content-['']">
+      {/* <div className="swiper-button-prev !hidden sm:!flex !left-4 !top-1/2 !-translate-y-1/2 !bg-white !bg-opacity-50 !w-10 !h-10 !rounded-full items-center justify-center after:!content-['']">
         <ChevronLeft className="w-6 h-6" />
       </div>
-      <div className="swiper-button-next !right-4 !top-1/2 !-translate-y-1/2 !bg-white !bg-opacity-50 !w-10 !h-10 !rounded-full !flex items-center justify-center after:!content-['']">
+      <div className="swiper-button-next !hidden sm:!flex !right-4 !top-1/2 !-translate-y-1/2 !bg-white !bg-opacity-50 !w-10 !h-10 !rounded-full items-center justify-center after:!content-['']">
         <ChevronRight className="w-6 h-6" />
-      </div>
+      </div> */}
     </div>
   );
 };

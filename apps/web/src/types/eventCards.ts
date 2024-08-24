@@ -1,16 +1,18 @@
 export interface EventCardProps {
   id: string;
-  thumbnail: string;
+  img: string;
   title: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   price: number;
 }
 
 export interface EventDetailProps {
   id: string;
-  thumbnail: string;
+  img: string;
   title: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   price: number;
   description: string;
 }
@@ -23,7 +25,8 @@ export interface EventCard {
   price: number;
   quota: number;
   available_seat: number;
-  date: string;
+  startDate: string;
+  endDate: string;
   venueId: number;
   userId: number;
   isDeleted: boolean;

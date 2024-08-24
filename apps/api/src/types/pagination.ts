@@ -9,4 +9,4 @@ export interface PaginationMeta {
     page: number;
     sortBy: string;
     sortOrder: string;
-  } 
+  }

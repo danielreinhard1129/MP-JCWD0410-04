@@ -25,10 +25,8 @@ const DetailPage = () => {
         id={data.id}
         title={data.title}
         price={data.price}
-        thumbnail={data.img}
-        description={data.desc}
-        date={data.date}
-      />
+        img={data.img}
+        description={data.desc} startDate={""} endDate={""}      />
     </div>
   );
 };

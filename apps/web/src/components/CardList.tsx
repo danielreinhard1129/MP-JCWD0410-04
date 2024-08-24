@@ -1,3 +1,4 @@
+"use client";
 import useGetEventCards from "@/hooks/api/event/useGetEventCards";
 import { format } from "date-fns";
 import { Loader2 } from "lucide-react";
@@ -18,17 +19,26 @@ const CardList = () => {
   if (!data) {
     return <h1 className="text-center">Blog not found</h1>;
   }
+
   return (
     <div className="flex flex-row gap-4">
       {data?.data.map((card, index) => {
-        const formattedDate = format(new Date(card.date), "MMMM dd, yyyy");
+        const formattedStartDate = format(
+          new Date(card.startDate),
+          "MMMM dd, yyyy",
+        );
+        const formattedEndDate = format(
+          new Date(card.endDate),
+          "MMMM dd, yyyy",
+        );
         return (
           <EventCards
             key={index}
             id={card.id}
-            thumbnail={card.img}
+            img={card.img}
             title={card.title}
-            date={formattedDate}
+            startDate={formattedStartDate}
+            endDate={formattedEndDate}
             price={card.price}
           />
         );

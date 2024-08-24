@@ -37,4 +37,4 @@ const extractPublicIdFromUrl = (url: string) => {
   const publicIdWithExt = urlParts[urlParts.length - 1];
   const publicId = publicIdWithExt.split(".")[0];
   return publicId;
-}
+} 
