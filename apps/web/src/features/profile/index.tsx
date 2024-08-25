@@ -17,7 +17,7 @@ const ProfilePage = () => {
             <img
               src={session.data?.user.pfp}
               alt="Profile Picture"
-              className="h-16 w-16 object-cover"
+              className="max-h-48 w-48 object-cover rounded-xl"
             />
             <p className="mt-2 rounded-xl bg-blue-300 p-1 text-center font-semibold">
               {session.data?.user.role}

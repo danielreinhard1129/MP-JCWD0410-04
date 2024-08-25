@@ -3,7 +3,7 @@ import { uploader } from '@/lib/multer';
 import { verifyToken } from '@/lib/verifyToken';
 import { Router } from 'express';
 
-export class AuthRouter {
+export class ProfileRouter {
   private router: Router;
   private profileController: ProfileController;
 
@@ -15,12 +15,12 @@ export class AuthRouter {
 
   private initializeRoutes(): void {
     this.router.patch(
-      '/profile/edit',
+      '/update',
       verifyToken,
       this.profileController.updateProfile,
     );
     this.router.patch(
-      '/profile/edit-picture',
+      '/update-picture',
       verifyToken,
       uploader().single('pfp'),
       this.profileController.updateProfilePicture,

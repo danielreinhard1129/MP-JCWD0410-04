@@ -16,6 +16,8 @@ import { PrismaClient } from '@prisma/client';
 import { CategoryRouter } from './routers/category.router';
 import { ReviewRouter } from './routers/review.router';
 import { PaymentUserRouter } from './routers/payment.router';
+import { ProfileRouter } from './routers/profile.router';
+import { DashboardRouter } from './routers/dashboard.router';
 
 export default class App {
   private app: Express;
@@ -47,6 +49,8 @@ export default class App {
     const reviewRouter = new ReviewRouter();
     const paymentUserRouter = new PaymentUserRouter();
     // const paymentRouter = new PaymentRouter();
+    const profileRouter = new ProfileRouter();
+    const dashboardRouter = new DashboardRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
@@ -62,6 +66,8 @@ export default class App {
 
     this.app.use('/api/payments', paymentUserRouter.getRouter());
     // this.app.use('/api/payment', paymentRouter.getRouter());
+    this.app.use('/api/profiles', profileRouter.getRouter());
+    this.app.use('/api/dashboards', dashboardRouter.getRouter());
   }
 
   public start(): void {
