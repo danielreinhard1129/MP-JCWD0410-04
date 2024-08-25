@@ -34,11 +34,11 @@ model User {
   updatedAt    DateTime      @updatedAt
   events       Event[]
   vouchers     Voucher[]
-  checkouts    Checkout[]
   userVouchers UserVoucher[]
   userRewards  UserReward[]
   point        Point?
-  Review       Review[]
+  reviews      Review[]
+  payments     Payment[]
 
   @@map("users")
 }
@@ -60,11 +60,11 @@ model Event {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  user      User       @relation(fields: [userId], references: [id])
-  category  Category   @relation(fields: [categoryId], references: [id])
-  vouchers  Voucher[]
-  checkouts Checkout[]
-  Review    Review[]
+  user     User      @relation(fields: [userId], references: [id])
+  category Category  @relation(fields: [categoryId], references: [id])
+  vouchers Voucher[]
+  reviews  Review[]
+  payments Payment[]
 
   @@map("events")
 }
@@ -123,37 +123,23 @@ model Reward {
   @@map("rewards")
 }
 
-model Checkout {
-  id          Int      @id @default(autoincrement())
-  total       Int
-  ticketQty   Int
-  pointUsed   Int?
-  voucherUsed Int?
-  rewardUsed  Int?
-  isDeleted   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      Int
-  eventId     Int
-
-  user     User      @relation(fields: [userId], references: [id])
-  event    Event     @relation(fields: [eventId], references: [id])
-  payments Payment[]
-
-  @@map("checkouts")
-}
-
 model Payment {
-  id             Int            @id @default(autoincrement())
-  status         Payment_Status
-  isDeleted      Boolean        @default(false)
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  checkoutId     Int
-  paymentProofId Int
+  id           Int            @id @default(autoincrement())
+  total        Int
+  qty          Int
+  status       Payment_Status
+  pointUsed    Int?
+  voucherUsed  Int?
+  rewardUsed   Int?
+  paymentProof String?
+  isDeleted    Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  userId       Int
+  eventId      Int
 
-  checkout     Checkout     @relation(fields: [checkoutId], references: [id])
-  paymentproof PaymentProof @relation(fields: [paymentProofId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
 
   @@map("payments")
 }
@@ -175,17 +161,6 @@ model Voucher {
   userVouchers UserVoucher[]
 
   @@map("vouchers")
-}
-
-model PaymentProof {
-  id        Int       @id @default(autoincrement())
-  imgUrl    String    @unique
-  isDeleted Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  payments  Payment[]
-
-  @@map("paymentproofs")
 }
 
 model UserReward {
@@ -223,9 +198,12 @@ enum Role {
 }
 
 enum Payment_Status {
-  Accepted
-  Declined
-  Pending
+  WAIITNG_FOR_PAYMENT
+  WAITING_FOR_ADMIN_CONFIRMATION
+  DONE
+  REJECTED
+  EXPIRED
+  CANCELED
 }
 
 enum Provider {
