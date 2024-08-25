@@ -1,12 +1,12 @@
 import prisma from '@/prisma';
 
-interface CreateTransactionBody {
+interface CreatePaymentBody {
   qty: number;
   eventId: number;
 }
 
-export const createTransactionService = async (
-  body: CreateTransactionBody,
+export const createPaymentService = async (
+  body: CreatePaymentBody,
   userId: number,
 ) => {
   try {
@@ -39,7 +39,7 @@ export const createTransactionService = async (
         eventId,
         userId,
         total: event.price * qty,
-        status: `Pending`,
+        status: `WAIITNG_FOR_PAYMENT`,
       },
     });
   } catch (error) {
