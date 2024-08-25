@@ -38,6 +38,7 @@ model User {
   userVouchers UserVoucher[]
   userRewards  UserReward[]
   point        Point?
+  Review       Review[]
 
   @@map("users")
 }
@@ -63,6 +64,7 @@ model Event {
   category  Category   @relation(fields: [categoryId], references: [id])
   vouchers  Voucher[]
   checkouts Checkout[]
+  Review    Review[]
 
   @@map("events")
 }
@@ -81,10 +83,15 @@ model Category {
 
 model Review {
   id        Int      @id @default(autoincrement())
-  text      String
+  text      String   @db.LongText
   isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  userId    Int
+  eventId   Int
+
+  user  User  @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
 
   @@map("reviews")
 }

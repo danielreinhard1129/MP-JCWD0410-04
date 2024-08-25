@@ -15,7 +15,7 @@ const Autocomplete = () => {
   const router = useRouter();
 
   const getEventsOptions = async (inputText: string) => {
-    const { data } = await axiosInstance.get("/api/events", {
+    const { data } = await axiosInstance.get("/events", {
       params: { search: inputText, take: 20 },
     });
 

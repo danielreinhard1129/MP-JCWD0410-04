@@ -62,13 +62,13 @@ const CreateEventPage: React.FC = () => {
   const onChangeThumbnail = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length) {
-      formik.setFieldValue("thumbnail", files[0]);
+      formik.setFieldValue("img", files[0]);
       setSelectedImage(URL.createObjectURL(files[0]));
     }
   };
 
   const removeSelectedImage = () => {
-    formik.setFieldValue("thumbnail", null);
+    formik.setFieldValue("img", null);
     setSelectedImage("");
     if (thumbnailRef.current) {
       thumbnailRef.current.value = "";

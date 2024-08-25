@@ -14,6 +14,7 @@ import { AuthRouter } from './routers/auth.router';
 import { EventRouter } from './routers/event.router';
 import { PrismaClient } from '@prisma/client';
 import { CategoryRouter } from './routers/category.router';
+import { ReviewRouter } from './routers/review.router';
 
 export default class App {
   private app: Express;
@@ -42,6 +43,7 @@ export default class App {
     const authRouter = new AuthRouter();
     const eventRouter = new EventRouter();
     const categoryRouter = new CategoryRouter();
+    const reviewRouter = new ReviewRouter();
 
     this.app.get('/api', (req: Request, res: Response) => {
       res.send(`Hello, Purwadhika Student API!`);
@@ -53,6 +55,7 @@ export default class App {
     this.app.use('/api/auth', authRouter.getRouter());
     this.app.use('/api/events', eventRouter.getRouter());
     this.app.use('/api/categories', categoryRouter.getRouter());
+    this.app.use('/api/reviews', reviewRouter.getRouter());
   }
 
   public start(): void {

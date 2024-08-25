@@ -23,13 +23,13 @@ export const getEventsService = async (query: GetEventsService) => {
     //   whereClause.location = location;
     // }
 
-    // if (category) {
-    //   whereClause.category = { title: category };
-    // }
+    if (category) {
+      whereClause.category = { category: category };
+    }
 
-    // if (search) {
-    //   whereClause.name = { contains: search };
-    // }
+    if (search) {
+      whereClause.title = { contains: search };
+    }
 
     const events = await prisma.event.findMany({
       where: whereClause,
@@ -38,14 +38,19 @@ export const getEventsService = async (query: GetEventsService) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-
       include: {
         user: {
           select: {
             username: true,
-          }
-        }
-      }
+          },
+        },
+        category: {
+          // Include related category information
+          select: {
+            category: true,
+          },
+        },
+      },
     });
 
     const total = await prisma.event.count({

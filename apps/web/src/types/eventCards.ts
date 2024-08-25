@@ -15,6 +15,8 @@ export interface EventDetailProps {
   endDate: string;
   price: number;
   description: string;
+  location: string;
+  user: { username: string };
 }
 
 export interface EventCard {
@@ -24,10 +26,10 @@ export interface EventCard {
   img: string;
   price: number;
   quota: number;
-  available_seat: number;
+  availableSeat: number;
   startDate: string;
   endDate: string;
-  venueId: number;
+  location: string;
   userId: number;
   isDeleted: boolean;
   createdAt: string;

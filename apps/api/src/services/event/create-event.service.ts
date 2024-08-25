@@ -12,7 +12,6 @@ interface CreateEventBody {
   location: string;
   availableSeat: number;
   categoryId: number;
-  userId: number;
 }
 
 export const createEventService = async (
@@ -31,7 +30,6 @@ export const createEventService = async (
       img,
       location,
       categoryId,
-      userId,
     } = body;
 
     console.log(body);

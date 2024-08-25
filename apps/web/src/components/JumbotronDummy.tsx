@@ -44,7 +44,7 @@ const JumbotronCarousel: React.FC = () => {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
-        className="h-48 sm:h-96 w-full"
+        className="h-48 md:h-96 w-full"
       >
         {images.map((image, index) => (
           <SwiperSlide key={index} className="flex items-center justify-center transition-opacity duration-300">

@@ -16,6 +16,7 @@ import { format } from "date-fns";
 import { Loader2, CalendarIcon, GridIcon, ListIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import Pagination from "./components/Pagination";
 
 const EventList = () => {
   const searchParams = useSearchParams();
@@ -32,7 +33,13 @@ const EventList = () => {
 
   const { data: item } = useGetCategories();
 
+  const onChangePage = ({ selected }: { selected: number }) => {
+    setPage(selected + 1);
+  };
+
   const handleSelectCategory = (value: string) => {
+    console.log(selectedCategory);
+    
     if (value === "all") {
       return setSelectedCategory("");
     }
@@ -48,7 +55,7 @@ const EventList = () => {
   }
   return (
     <div className="container mx-auto max-w-7xl px-4 py-4 sm:py-6 md:py-8">
-      <div className="mb-4 flex items-center text-sm text-gray-500">
+      <div className="mb-4 h-10 border-b-2 border-blue3 flex items-center text-sm text-gray-500">
         <span>Home</span>
         <span className="mx-2">/</span>
         <span>Events</span>
@@ -56,10 +63,10 @@ const EventList = () => {
 
       <div className="mb-4 flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div className="flex space-x-2">
-          <button className="rounded bg-blue-500 px-3 py-1 text-sm text-white sm:px-4 sm:py-2 sm:text-base">
+          <button className="rounded bg-blue3 px-3 py-1 text-sm text-white sm:px-4 sm:py-2 sm:text-base">
             All
           </button>
-          <button className="px-3 py-1 text-sm text-blue-500 sm:px-4 sm:py-2 sm:text-base">
+          <button className="px-3 py-1 text-sm text-blue3 sm:px-4 sm:py-2 sm:text-base">
             New Onsales
           </button>
         </div>
@@ -86,23 +93,10 @@ const EventList = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <button className="rounded bg-gray-200 p-1 sm:p-2">
-            <GridIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-          </button>
-          <button className="rounded bg-gray-200 p-1 sm:p-2">
-            <ListIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-          </button>
         </div>
       </div>
 
-      <div className="mb-4 rounded bg-gray-200 p-2 text-sm sm:mb-6 sm:p-3 sm:text-base">
-        <CalendarIcon className="mr-1 inline-block h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-        <span className="hidden sm:inline">
-          01 Aug 2024 (Thu.) ~ 31 Aug 2024 (Sat.)
-        </span>
-        <span className="sm:hidden">Aug 1-31, 2024</span>
-      </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 justify-items-center">
         {data?.data.map((card, index) => {
           const formattedStartDate = format(
             new Date(card.startDate),
@@ -124,6 +118,14 @@ const EventList = () => {
             />
           );
         })}
+      </div>
+      <div className="flex mt-10 justify-center">
+        <Pagination
+          total={data?.meta?.total || 0}
+          limit={data?.meta?.take || 0}
+          onChangePage={onChangePage}
+          page={page}
+        />
       </div>
     </div>
   );

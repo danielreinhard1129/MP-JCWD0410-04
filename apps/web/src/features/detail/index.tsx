@@ -3,7 +3,7 @@
 import { Loader2 } from "lucide-react";
 import DetailPageComponent from "./components/DetailPageComponent";
 import useGetEventDetail from "@/hooks/api/event/useGetEventDetail";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 
 const DetailPage = () => {
   const params = useParams();
@@ -26,7 +26,12 @@ const DetailPage = () => {
         title={data.title}
         price={data.price}
         img={data.img}
-        description={data.desc} startDate={""} endDate={""}      />
+        description={data.desc}
+        startDate={data.startDate}
+        endDate={data.endDate}
+        location={data.location}
+        user={data.user}
+      />
     </div>
   );
 };

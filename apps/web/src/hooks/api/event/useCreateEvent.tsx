@@ -31,7 +31,7 @@ const useCreateEvent = () => {
       const createEventForm = new FormData();
 
       createEventForm.append("title", payload.title);
-      createEventForm.append("description", payload.desc);
+      createEventForm.append("desc", payload.desc);
       createEventForm.append("location", payload.location);
       createEventForm.append("startDate", payload.startDate!.toString());
       createEventForm.append("endDate", payload.endDate!.toString());
