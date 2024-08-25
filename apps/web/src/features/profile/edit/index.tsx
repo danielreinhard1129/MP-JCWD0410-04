@@ -8,6 +8,9 @@ import RichTextEditor from "@/components/RichTextEditor";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { EditPFPSchema } from "./schemas/EditPFPSchema";
+import useUpdateProfile from "@/hooks/api/profile/useUpdateProfile";
+import useUpdatePFP from "@/hooks/api/profile/useUpdatePFP";
 
 // id           Int           @id @default(autoincrement())
 // username     String        @unique
@@ -29,18 +32,29 @@ import { Input } from "@/components/ui/input";
 
 const EditProfilePage = () => {
   const session = useSession();
-  // const { mutateAsync: register, isPending: isLoading } = useRegister();
+  const {mutateAsync: updateProfile} = useUpdateProfile();
+  const {mutateAsync: updatePFP} = useUpdatePFP();
 
   const formik = useFormik({
     initialValues: {
       username: "",
       email: "",
       password: "",
-      pfp: null,
     },
     validationSchema: EditProfileSchema,
     onSubmit: async (values, { resetForm }) => {
-      // await register(values);
+      await updateProfile(values);
+      resetForm();
+    },
+  });
+
+  const pfpFormik = useFormik({
+    initialValues: {
+      pfp: null,
+    },
+    validationSchema: EditPFPSchema,
+    onSubmit: async (values, { resetForm }) => {
+      await updatePFP(values);
       resetForm();
     },
   });
@@ -51,13 +65,13 @@ const EditProfilePage = () => {
   const onChangePfp = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length) {
-      formik.setFieldValue("pfp", files[0]);
+      pfpFormik.setFieldValue("pfp", files[0]);
       setSelectedImage(URL.createObjectURL(files[0]));
     }
   };
 
   const removeSelectedImage = () => {
-    formik.setFieldValue("pfp", null);
+    pfpFormik.setFieldValue("pfp", null);
     setSelectedImage("");
     if (pfpRef.current) {
       pfpRef.current.value = "";
@@ -71,6 +85,7 @@ const EditProfilePage = () => {
           <p className="mb-4 rounded-xl bg-blue3 p-1 text-center text-2xl font-semibold text-blue2">
             Edit Profile
           </p>
+
           <form onSubmit={formik.handleSubmit}>
             <label htmlFor="username" className="p-1 font-semibold">
               Username
@@ -120,35 +135,38 @@ const EditProfilePage = () => {
             {!!formik.touched.password && !!formik.errors.password ? (
               <p className="text-xs text-red-500">{formik.errors.password}</p>
             ) : null}
-            {/* <RichTextEditor
-            label="Content"
-            onChange={(html: string) => formik.setFieldValue("content", html)}
-            isError={Boolean(formik.errors.content)}
-            value={formik.values.content}
-          /> */}
-          {selectedImage ? (
-            <>
-              <div className="relative h-[150px] w-[200px]">
-                <Image src={selectedImage} alt="Blog thumbnail" fill />
-              </div>
-              <button onClick={removeSelectedImage}>remove</button>
-            </>
-          ) : null}
+            <button
+              type="submit"
+              className="mt-4 w-full rounded-xl bg-blue-300 p-1 text-center text-xl font-semibold"
+            >
+              Confirm Update
+            </button>
+          </form>
+          <form onSubmit={pfpFormik.handleSubmit} className="mt-6">
+            {selectedImage ? (
+              <>
+                <div className="relative h-[150px] w-[200px]">
+                  <Image src={selectedImage} alt="Blog thumbnail" fill />
+                </div>
+                <button onClick={removeSelectedImage}>remove</button>
+              </>
+            ) : null}
 
-          <div className="flex flex-col space-y-1.5">
-            <Label>Thumbnail</Label>
+            <Label className="p-1 text-base font-semibold">
+              Profile Picture
+            </Label>
             <Input
               ref={pfpRef}
               type="file"
               accept="image/*"
               onChange={onChangePfp}
+              className="my-1"
             />
-          </div>
             <button
               type="submit"
-              className="mt-4 w-full rounded-xl bg-blue-300 p-1 text-center text-xl font-semibold"
+              className="mt-1 w-40 rounded-xl bg-blue-300 text-center font-semibold"
             >
-              Confirm update
+              Update Picture
             </button>
           </form>
         </div>
