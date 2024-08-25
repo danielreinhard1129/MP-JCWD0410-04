@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Loader2, Menu, X } from "lucide-react";
-import BuyButton from "@/features/detail/components/BuyButton";
+// import BuyButton from "@/features/detail/components/BuyButton";
 import { EventDetailProps } from "@/types/eventCards";
 import { format } from "date-fns";
 import formatPrice from "@/utils/formatprice";
@@ -96,12 +96,12 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
                 </nav>
               </div>
               <div>
-                <BuyButton
+                {/* <BuyButton
                   id={data.id}
                   title={data.title}
                   desc={""}
                   img={""}
-                  price={0}
+                  price={data.price}
                   quota={0}
                   availableSeat={0}
                   startDate={""}
@@ -114,7 +114,7 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
                   user={{
                     username: "",
                   }}
-                />
+                /> */}
               </div>
             </div>
           </div>
