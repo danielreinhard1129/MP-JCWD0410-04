@@ -19,18 +19,18 @@ export class PaymentUserRouter {
       verifyToken,
       this.paymentUserController.getPayments,
     );
-    // this.router.get('/:id', this.transactionUserController.getTransaction);
+    this.router.get('/:id', this.paymentUserController.getPayment);
     this.router.post(
       '/',
       verifyToken,
       this.paymentUserController.createPayment,
     );
-    // this.router.patch(
-    //   '/:id',
-    //   verifyToken,
-    //   uploader().single('paymentProof'),
-    //   this.transactionUserController.updateTransaction,
-    // );
+    this.router.patch(
+      '/:id',
+      verifyToken,
+      uploader().single('paymentProof'),
+      this.paymentUserController.updatePayment,
+    );
   }
 
   getRouter(): Router {

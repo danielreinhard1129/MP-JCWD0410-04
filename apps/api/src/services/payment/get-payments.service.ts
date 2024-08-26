@@ -1,9 +1,14 @@
-// import React from 'react'
+import prisma from '../../prisma';
 
-// const get-payments.service = () => {
-//   return (
-//     <div>get-payments.service</div>
-//   )
-// }
+export const getPaymentsService = async (userId: number) => {
+  try {
+    const payments = await prisma.payment.findMany({
+      where: { userId },
+      include: { event: { select: { title: true, img: true } } },
+    });
 
-// export default get-payments.service
+    return payments;
+  } catch (error) {
+    throw error;
+  }
+};

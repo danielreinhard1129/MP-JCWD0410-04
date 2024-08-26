@@ -15,8 +15,8 @@ const LayoutWrapper = async ({ children }: PropsWithChildren) => {
   // }
 
   return (
-    <div className="flex bg-[#edf5ff]">
-      <div className="w-80 sticky bg-[#cee0f7]">
+    <div className="flex bg-blue2">
+      <div className="w-80 sticky bg-white">
         <div className="h-12">
           <Link href="/">
             <img
@@ -26,15 +26,15 @@ const LayoutWrapper = async ({ children }: PropsWithChildren) => {
             />
           </Link>
         </div>
-        <hr className="mx-2 border-black"></hr>
-        <div className="p-4 bg-[#cee0f7] shadow-sm h-screen">
-          <p className="p-2 pl-4 text-xs font-bold text-blue1">Dashboard</p>
+        <hr className="mx-2 border-blue2"></hr>
+        <div className="p-4 bg-white shadow-sm h-screen">
+          <p className="p-2 pl-4 text-xl font-bold text-blue1">Dashboard</p>
           <Link href="/dashboard">
             <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3 rounded-full hover:text-blue2">
               <span>
                 <TbHome />
               </span>
-              <span>Dashboard</span>
+              <span >Dashboard</span>
             </div>
           </Link>
           <Link href="/dashboard/active-events" className="hover:text-black1">
@@ -53,8 +53,8 @@ const LayoutWrapper = async ({ children }: PropsWithChildren) => {
               <span>Transactions</span>
             </div>
           </Link>
-          <hr className="mx-2 border-black"></hr>
-          <p className="p-2 pl-4 text-xs font-bold text-blue1">Account</p>
+          <hr className="mx-2 border-blue2"></hr>
+          <p className="p-2 pl-4 text-xl font-bold text-blue1">Account</p>
           <Link href="/profile" className="hover:text-black1">
             <div className="flex items-center justify-start space-x-2 p-2 pl-4 text-sm font-semibold hover:bg-blue3  rounded-full hover:text-blue2">
               <span>
@@ -83,7 +83,7 @@ const LayoutWrapper = async ({ children }: PropsWithChildren) => {
       </div>
       <div className="w-[100%] m-4">
         <NavbarDashboard />
-        <div className="bg-gray-300 mt-4 rounded-2xl p-4 shadow-sm">{children}</div>
+        <div className="bg-white min-h-screen mt-4 rounded-2xl p-4 shadow-sm">{children}</div>
       </div>
     </div>
   );

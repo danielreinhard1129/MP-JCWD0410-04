@@ -10,6 +10,7 @@ import { Calendar, MapPin, Banknote } from "lucide-react";
 import { useParams } from "next/navigation";
 import useGetEventDetail from "@/hooks/api/event/useGetEventDetail";
 import Markdown from "@/components/Markdown";
+import BuyButton from "./BuyButton";
 
 const DetailPageComponent: React.FC<EventDetailProps> = ({
   title,
@@ -96,25 +97,7 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
                 </nav>
               </div>
               <div>
-                {/* <BuyButton
-                  id={data.id}
-                  title={data.title}
-                  desc={""}
-                  img={""}
-                  price={data.price}
-                  quota={0}
-                  availableSeat={0}
-                  startDate={""}
-                  endDate={""}
-                  location={""}
-                  userId={0}
-                  isDeleted={false}
-                  createdAt={""}
-                  updatedAt={""}
-                  user={{
-                    username: "",
-                  }}
-                /> */}
+                <BuyButton />
               </div>
             </div>
           </div>
@@ -130,7 +113,7 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
             {/* <p className="mb-6 text-sm md:text-base">{description}</p> */}
             <Markdown description={description} />
           </div>
-          <div className="flex flex-col h-[280px] rounded-3xl bg-white p-4 text-black1 shadow sm:p-8 md:max-w-3xl">
+          <div className="flex h-[280px] flex-col rounded-3xl bg-white p-4 text-black1 shadow sm:p-8 md:max-w-3xl">
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-2">
                 <Calendar size={20} />

@@ -14,6 +14,17 @@ export interface Payment {
   eventId: number;
 }
 
+export interface PaymentCard {
+  id: number;
+  total: number;
+  qty: number;
+}
+export interface PaymentStatusProps {
+  id: number;
+  total: number;
+  status: string;
+}
+
 enum Payment_Status {
   WAIITNG_FOR_PAYMENT = "WAIITNG_FOR_PAYMENT",
   WAITING_FOR_ADMIN_CONFIRMATION = "WAITING_FOR_ADMIN_CONFIRMATION",
