@@ -3,6 +3,7 @@
 import useAxios from "@/hooks/useAxios";
 import { Event } from "@/types/event";
 import { PageableResponse, PaginationQueries } from "@/types/pagination";
+import { Payment } from "@/types/payment";
 import { useQuery } from "@tanstack/react-query";
 
 interface GetEventsQuery extends PaginationQueries {
@@ -11,6 +12,15 @@ interface GetEventsQuery extends PaginationQueries {
   location?: string;
 }
 
+interface EventDashboard extends Event {
+  category: {
+    category: string;
+},
+payments: Payment[];
+}
+
+
+
 const useGetEventsDashboard = (queries: GetEventsQuery) => {
   const { axiosInstance } = useAxios();
 
@@ -18,8 +28,9 @@ const useGetEventsDashboard = (queries: GetEventsQuery) => {
     queryKey: ["events", queries],
     queryFn: async () => {
       try {
-        const { data } = await axiosInstance.get<PageableResponse<Event>>(
-          "/api/events",
+        queries.sortOrder = "asc";
+        const { data } = await axiosInstance.get<PageableResponse<EventDashboard>>(
+          "/events",
           {
             params: queries,
           },

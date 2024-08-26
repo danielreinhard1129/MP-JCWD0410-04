@@ -24,6 +24,7 @@ title: string;
 desc: string;
 price: number;
 quota: number;
+img: string;
 availableSeat: number;
 location: string;
 startDate: string;

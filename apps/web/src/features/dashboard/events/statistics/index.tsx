@@ -70,7 +70,7 @@ const EventStatisticsPage = () => {
         <div className="max-w-[200px]">
           <p>Available Seat: {data.availableSeat}</p>
           <p>Booked: {data.quota - data.availableSeat}</p>
-          <PieChart width={200} height={160}>
+          <PieChart width={200} height={200}>
             <Pie
               data={data01}
               dataKey="value"

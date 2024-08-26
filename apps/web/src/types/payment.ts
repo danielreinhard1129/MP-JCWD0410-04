@@ -3,7 +3,7 @@ export interface Payment {
   total: number;
   qty: number;
   status: Payment_Status;
-  ponumberUsed: number;
+  pointUsed: number;
   voucherUsed: number;
   rewardUsed: number;
   paymentProof: string;
@@ -25,8 +25,8 @@ export interface PaymentStatusProps {
   status: string;
 }
 
-enum Payment_Status {
-  WAIITNG_FOR_PAYMENT = "WAIITNG_FOR_PAYMENT",
+export enum Payment_Status {
+  WAITING_FOR_PAYMENT = "WAITING_FOR_PAYMENT",
   WAITING_FOR_ADMIN_CONFIRMATION = "WAITING_FOR_ADMIN_CONFIRMATION",
   DONE = "DONE",
   REJECTED = "REJECTED",

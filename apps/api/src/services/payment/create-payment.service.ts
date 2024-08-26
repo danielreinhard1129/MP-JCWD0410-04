@@ -39,7 +39,7 @@ export const createPaymentService = async (
         eventId,
         userId,
         total: event.price * qty,
-        status: `WAIITNG_FOR_PAYMENT`,
+        status: `WAITING_FOR_PAYMENT`,
       },
     });
   } catch (error) {
