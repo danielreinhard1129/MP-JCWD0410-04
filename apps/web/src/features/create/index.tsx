@@ -240,7 +240,8 @@ const CreateEventPage: React.FC = () => {
           <div className="mt-6 flex flex-col-reverse justify-end gap-4 sm:flex-row sm:space-x-4">
             <Button
               type="submit"
-              className="bg-color3 hover:bg-color2 w-full sm:w-auto"
+              className="bg-blue1 text-white font-bold px-4 py-2 rounded-3xl hover:bg-blue3 transition-colors duration-200"
+
               disabled={isPending || !formik.isValid}
               onSubmit={() => {
                 if (!formik.isValid) {

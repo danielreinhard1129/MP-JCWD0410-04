@@ -55,13 +55,13 @@ const Navbar = () => {
             </Link>
             <Searchbar />
             <Link
-              href="/login"
+              href="/dashboard/create-event"
               className="text-xs font-bold text-black1 hover:text-blue1 whitespace-nowrap sm:text-sm"
             >
               Create Event
             </Link>
             <Link
-              href="/dashboard"
+              href="/mytickets"
               className="text-xs font-bold text-black1 hover:text-blue1 whitespace-nowrap sm:text-sm"
             >
               My Tickets
@@ -149,7 +149,7 @@ const Navbar = () => {
               Events
             </Link>
             <Link
-              href="/create"
+              href="/dashboard/create-event"
               className="block text-xs font-bold text-black1 hover:text-blue1 whitespace-nowrap sm:text-sm"
             >
               Create Event

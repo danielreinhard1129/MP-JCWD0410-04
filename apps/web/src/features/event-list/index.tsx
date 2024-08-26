@@ -54,7 +54,7 @@ const EventList = () => {
     return <h1 className="text-center">Blog not found</h1>;
   }
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-4 sm:py-6 md:py-8">
+    <div className="container min-h-screen mx-auto max-w-7xl px-4 py-4 sm:py-6 md:py-8">
       <div className="mb-4 h-10 border-b-2 border-blue3 flex items-center text-sm text-gray-500">
         <span>Home</span>
         <span className="mx-2">/</span>
@@ -96,7 +96,7 @@ const EventList = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 justify-items-center">
+      <div className="min-h-screen grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 justify-items-center">
         {data?.data.map((card, index) => {
           const formattedStartDate = format(
             new Date(card.startDate),

@@ -21,7 +21,7 @@ export const createPaymentService = async (
     }
 
     if (event.availableSeat < qty) {
-      throw new Error('The ticket quota has been exceeded.');
+      throw new Error('No more available seats.');
     }
 
     await prisma.event.update({
