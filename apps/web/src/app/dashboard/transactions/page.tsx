@@ -3,7 +3,7 @@ import React from 'react'
 
 const DashboardTransactions = () => {
   return (
-    <DashboardTransactionsPage />
+    <p>y</p>
   )
 }
 

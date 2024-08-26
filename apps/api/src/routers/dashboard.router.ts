@@ -18,6 +18,16 @@ export class DashboardRouter {
       verifyToken,
       this.dashboardController.getEvent,
     );
+    this.router.get(
+      '/payments/:id',
+      verifyToken,
+      this.dashboardController.getPaymentDashboard,
+    ),
+      this.router.patch(
+        '/payments/:id',
+        verifyToken,
+        this.dashboardController.updateStatusPaymentDashboard,
+      );
   }
 
   getRouter(): Router {
