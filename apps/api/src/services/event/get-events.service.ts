@@ -50,6 +50,7 @@ export const getEventsService = async (query: GetEventsService) => {
             category: true,
           },
         },
+        payments: true,
       },
     });
 

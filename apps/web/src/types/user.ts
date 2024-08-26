@@ -5,6 +5,7 @@ export interface User {
   password: string;
   pfp: string;
   role: Role;
+  provider: Provider;
   referral: string;
   isDeleted: boolean;
   createdAt: Date;
