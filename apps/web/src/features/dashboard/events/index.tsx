@@ -127,7 +127,9 @@ const DashboardEventsPage = () => {
                 <th className="border px-4 py-2">Category</th>
               ) : null}
               {showPrice ? <th className="border px-4 py-2">Price</th> : null}
-              {showSeat ? <th className="border px-4 py-2">Available Seat</th> : null}
+              {showSeat ? (
+                <th className="border px-4 py-2">Available Seat</th>
+              ) : null}
               {showStart ? (
                 <th className="border px-4 py-2">Start Date</th>
               ) : null}
@@ -155,7 +157,11 @@ const DashboardEventsPage = () => {
                   </td>
                 ) : null}
                 {showTitle ? (
-                  <td className="border py-2">{event.title}</td>
+                  <td className="border py-2">
+                    <Link href={`/dashboard/events/${event.id}`}>
+                      {event.title}
+                    </Link>
+                  </td>
                 ) : null}
                 {showThumbnail ? (
                   <td className="border py-2">
@@ -179,7 +185,9 @@ const DashboardEventsPage = () => {
                   <td className="border py-2">{formatToRupiah(event.price)}</td>
                 ) : null}
                 {showSeat ? (
-                  <td className="border py-2 text-sm">{event.availableSeat} out of {event.quota}</td>
+                  <td className="border py-2 text-sm">
+                    {event.availableSeat} out of {event.quota}
+                  </td>
                 ) : null}
                 {showStart ? (
                   <td className="border py-2">

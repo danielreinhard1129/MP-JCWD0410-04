@@ -18,6 +18,7 @@ interface StatusPayload {
 
 const useUpdateStatusPayment = () => {
   const { axiosInstance } = useAxios();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: async (payload: StatusPayload) => {
@@ -26,6 +27,7 @@ const useUpdateStatusPayment = () => {
     },
     onSuccess: async (data) => {
       toast.success("Successfully updated payment status");
+      router.refresh();
     },
     onError: (error: AxiosError<any>) => {
       toast.error(error.response?.data);

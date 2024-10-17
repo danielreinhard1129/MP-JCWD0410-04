@@ -1,4 +1,5 @@
 import { AuthController } from '@/controllers/auth.controller';
+import { getEmailFromToken } from '@/lib/getEmailFromToken';
 import { verifyToken } from '@/lib/verifyToken';
 import {
   validateEmail,
@@ -34,6 +35,7 @@ export class AuthRouter {
       verifyToken,
       this.authController.resetPassword,
     );
+    this.router.get('/get-email-token', getEmailFromToken, this.authController.getEmailFromToken)
   }
 
   getRouter(): Router {

@@ -1,4 +1,5 @@
 import { forgotPasswordService } from '@/services/auth/forgotPassword.service';
+import { getEmailFromTokenService } from '@/services/auth/getEmailFromToken.service';
 import { loginService } from '@/services/auth/login.service';
 import { registerService } from '@/services/auth/register.service';
 import { resetPasswordService } from '@/services/auth/resetPassword.service';
@@ -37,6 +38,17 @@ export class AuthController {
       const result = await resetPasswordService(
         Number(res.locals.user.id),
         req.body.password,
+      );
+      return res.status(200).send(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getEmailFromToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await getEmailFromTokenService(
+        String(res.locals.user.id),
       );
       return res.status(200).send(result);
     } catch (error) {
