@@ -14,6 +14,11 @@ export class DashboardRouter {
 
   private initializeRoutes(): void {
     this.router.get(
+      '/events/statistics/:id',
+      verifyToken,
+      this.dashboardController.getEventStatisticsDashboard,
+    ),
+    this.router.get(
       '/events/:id',
       verifyToken,
       this.dashboardController.getEvent,

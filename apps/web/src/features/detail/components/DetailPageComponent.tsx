@@ -26,6 +26,7 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
   const id = params.id as string;
 
   const { data, isPending } = useGetEventDetail(id);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   if (isPending) {
     return <Loader2 className="mx-auto animate-spin" />;
@@ -35,7 +36,6 @@ const DetailPageComponent: React.FC<EventDetailProps> = ({
     return <h1 className="text-center">Event not found</h1>;
   }
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

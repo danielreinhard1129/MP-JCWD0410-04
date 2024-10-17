@@ -1,5 +1,6 @@
 "use client";
 
+// import useGetStatisticsDashboard from "@/hooks/api/dashboard/useGetEventStatistics";
 import useGetEventDetail from "@/hooks/api/event/useGetEventDetail";
 import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -62,6 +63,19 @@ const EventStatisticsPage = () => {
     },
   ];
 
+  const formatToRupiah = (number: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
+
+  // const { data: dataAttendees } = useGetStatisticsDashboard(id);
+
+  // if (!dataAttendees) {
+  //   <div>No Attendees</div>
+  // }
+
   return (
     <div>
       EventStatisticsPage
@@ -101,7 +115,43 @@ const EventStatisticsPage = () => {
         </div>
       </div>
       <div className="mt-4">
-        <p>Attendee List</p>
+        <p className="mb-4">Attendee List</p>
+        <table className="min-w-full">
+          <thead>
+            <tr>
+              <th className="border px-2 py-2">User</th>
+              <th className="border px-2 py-2">Qty</th>
+              <th className="border px-2 py-2">Total</th>
+              <th className="border px-2 py-2">Proof</th>
+              <th className="border px-2 py-2">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* {dataAttendees.map((payment) => (
+              <tr key={payment.id} className="py-2 text-center">
+                <td className="border py-2">{payment.user.username}</td>
+                <td className="border py-2">{payment.qty}</td>
+                <td className="border py-2">{formatToRupiah(payment.total)}</td>
+                <td className="border py-2">
+                  {payment.paymentProof ? (
+                    <div className="flex justify-center">
+                      <img
+                        src={payment.paymentProof}
+                        alt="Bukti bayar"
+                        className="h-12 w-12 object-cover"
+                      />
+                    </div>
+                  ) : (
+                    "Pending"
+                  )}
+                </td>
+                <td className="border py-2">
+                  {new Date(payment.createdAt).toLocaleDateString()}
+                </td>
+              </tr>
+            ))} */}
+          </tbody>
+        </table>
       </div>
     </div>
   );

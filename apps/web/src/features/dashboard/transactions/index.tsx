@@ -13,7 +13,7 @@ const DashboardEventTransactionsPage = () => {
   const id = params.id as string;
 
   const { data, isLoading } = useGetPaymentDashboard(id);
-  const {mutateAsync} = useUpdateStatusPayment();
+  const { mutateAsync } = useUpdateStatusPayment();
 
   if (isLoading) {
     return <Loader2 className="mx-auto animate-spin" />;
@@ -23,7 +23,7 @@ const DashboardEventTransactionsPage = () => {
     return <p className="text-center">No Payment Found</p>;
   }
 
-  data[0].event.userId !== sessions.data?.user.id ? (
+  data[0]?.event.userId !== sessions.data?.user.id ? (
     <p className="text-center">Permission denied</p>
   ) : null;
 
@@ -38,8 +38,8 @@ const DashboardEventTransactionsPage = () => {
     status: string;
     id: number;
   }
-  const handleButton = (values:UpdateValues) => {
-    mutateAsync(values)
+  const handleButton = (values: UpdateValues) => {
+    mutateAsync(values);
   };
 
   return (
@@ -77,25 +77,35 @@ const DashboardEventTransactionsPage = () => {
                   )}
                 </td>
                 <td className="border py-2 text-sm">
-                  {payment.status.toLowerCase()}
+                  {payment.status.split("_").join(" ")}
                 </td>
                 <td className="border py-2">
                   {new Date(payment.createdAt).toLocaleDateString()}
                 </td>
-                {payment.status === "WAITING_FOR_ADMIN_CONFIRMATION" ? (
-                  <td className="border py-2">
+                <td className="border py-2">
+                  {payment.status === "WAITING_FOR_ADMIN_CONFIRMATION" ? (
                     <div className="flex justify-evenly gap-1">
-                      <button className="rounded-md bg-green-500 p-1" onClick={() => handleButton({id: payment.id, status: "DONE"})}>
+                      <button
+                        className="rounded-md bg-green-500 p-1"
+                        onClick={() =>
+                          handleButton({ id: payment.id, status: "DONE" })
+                        }
+                      >
                         ACCEPT
                       </button>
-                      <button className="rounded-md bg-red-500 p-1" onClick={() => handleButton({id: payment.id, status: "REJECTED"})}>
+                      <button
+                        className="rounded-md bg-red-500 p-1"
+                        onClick={() =>
+                          handleButton({ id: payment.id, status: "REJECTED" })
+                        }
+                      >
                         REJECT
                       </button>
                     </div>
-                  </td>
-                ) : (
-                  ""
-                )}
+                  ) : (
+                    <div></div> 
+                  )}
+                </td>
               </tr>
             ))}
             {/* {isPending && (

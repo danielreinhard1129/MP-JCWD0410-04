@@ -23,7 +23,7 @@ import Image from "next/image";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { CreateEventSchema } from "./schemas/CreateEventSchema";
 
-const CreateEventPage: React.FC = () => {
+const CreateEventPage = () => {
   const { mutateAsync: createEvent, isPending } = useCreateEvent();
   const [selectedCategoryId, setSelectedCategoryId] = useState<number>(0);
   const session = useSession();
